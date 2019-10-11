@@ -10,6 +10,8 @@ Controllers
 Models
 
   User
+    has_secure_password
+
     has_many tasks
     has_many comments through tasks
   Task
@@ -31,6 +33,9 @@ Views
     edit
     show
 
+  sessions
+    new
+
 
 Basic functions:
 
@@ -50,9 +55,10 @@ To do's:
     [] Build nested route for Admin flow
   [] Generate controllers
   [] Build out views
-    [] create form partials
+    [] Build out view hleper methods
+    [] create form partials with nested form for users/:id/tasks/:id
   [X] Add .env file and include in .gitignore
   [X] Add omniauth.rb file
-  [] Create DB tables remember the user must have a uid column for FB login. 
+  [] Generate DB migrations remember the users table must have a uid column for FB login. 
   [] Stub out methods
     [] 

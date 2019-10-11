@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     resources :tasks, only: [:edit, :show]
   end
 
-  
+  resources :tasks
+  get '/auth/facebook/callback' => 'sessions#create'
 
   root 'welcome#home'
 end
