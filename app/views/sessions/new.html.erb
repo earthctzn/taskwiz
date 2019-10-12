@@ -1,22 +1,23 @@
 <h1>Hey Taskwiz! Log in below. </h1>
 <%= form_with :user, url: login_path do |f| %>
 
+  <div>
+    <%= f.label :name, "name" %>
+    <%= f.text_field :name %>
+  </div>
 
-<div>
-  <%= f.label :name, "name" %>
-  <%= f.text_field :name %>
-</div>
-<div>
-  <%= f.label :email, "email:" %>
-  <%= f.text_field :email %>
-</div>
+  <div>
+    <%= f.label :email, "email:" %>
+    <%= f.text_field :email %>
+  </div>
 
-<div>
-  <%= f.label :password, "password:" %>
-  <%= f.pasword_field :password %>
-  <%= f.submit %>
-</div>
-
+  <div>
+    <%= f.label :password, "password:" %>
+    <%= f.pasword_field :password %>
+    <%= f.submit %>
+  </div>
+  
+<% end %>
 
 
 
