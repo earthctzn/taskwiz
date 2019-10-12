@@ -63,7 +63,7 @@ To do's:
   [X] Add omniauth.rb file
   [] Generate DB migrations remember the users table must have a uid column for FB login. 
   [] Stub out methods
-    [] 
+    [] test
 
 
   
