@@ -6,6 +6,7 @@ Controllers
   UsersController
   TasksController
   CommentsController
+  Welcome Controller
 
 Models
 
@@ -50,8 +51,8 @@ Basic functions:
 
 To do's:
 
-  [] Build routes
-    [] Build nested route for users/:id/tasks/:id & users/:id/tasks/:id/edit
+  [X] Build routes
+    [X] Build nested route for users/:id/tasks/:id & users/:id/tasks/:id/edit
     [] Build nested route for Admin flow
   [X] Generate controllers
   [] Build models and associations
