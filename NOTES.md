@@ -53,7 +53,8 @@ To do's:
   [] Build routes
     [] Build nested route for users/:id/tasks/:id & users/:id/tasks/:id/edit
     [] Build nested route for Admin flow
-  [] Generate controllers
+  [X] Generate controllers
+  [] Build models and associations
   [] Build out views
     [] Build out view hleper methods
     [] create form partials with nested form for users/:id/tasks/:id
@@ -61,7 +62,7 @@ To do's:
   [X] Add omniauth.rb file
   [] Generate DB migrations remember the users table must have a uid column for FB login. 
   [] Stub out methods
-    [] mac1
-    
+    [] 
+
 
   

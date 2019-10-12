@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  
+
   def new
   end
   
@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    session.clear
+    redirect_to new_session_path
   end
 
 end
