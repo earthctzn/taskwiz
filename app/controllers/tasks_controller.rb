@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :admin?, except: [:index, :show]
   def new
   end
 

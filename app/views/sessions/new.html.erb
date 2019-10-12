@@ -1,2 +1,4 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>Hey Taskwiz! Log in below. </h1>
+<%= form_with :user, url: login_path do |f| %>
+<%= f.label :name, "namme" %>
+
