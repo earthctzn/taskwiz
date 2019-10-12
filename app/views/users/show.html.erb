@@ -1,2 +1,17 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>Hi <%= @user.name  %></h1>
+<% @user.tasks.each do |task| %>
+<ol>
+  <li>
+    <div>
+      <p><%= task.title %></p>
+    </div>
+    <div>
+      <p><%= task.description %></p>
+    </div>
+    <div>
+      <p><%= task.comments %></p>
+    </div>
+  </li>
+</ol>
+
+<% end %>
