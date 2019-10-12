@@ -5,4 +5,5 @@ class User < ApplicationRecord
   has_many :comments, through: :tasks
 
   validates :name, presense: true
+  validates :email, uniqueness: true
 end
