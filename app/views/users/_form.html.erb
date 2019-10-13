@@ -1,5 +1,5 @@
 <%= form_with model: @user do |f| %>
-  <div>
+  <div class= "fields_with_errors">
     <%= f.label :name, "Name" %>
     <%= f.text_field :name %>
   </div>
@@ -16,4 +16,9 @@
     <%= f.password_field :confirm_password %>
   </div>
   <%= f.submit "Create account" %>
+  <% if @user && @user.errors.any? %>
+		<% @user.errors.full_messages.each do |errmsg| %>
+			<p><%= errmsg %></p>
+		<% end %>
+	<% end %>
 <% end %>
