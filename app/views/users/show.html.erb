@@ -1,18 +1,21 @@
 <h1>Hi <%= @user.name  %></h1>
-<% @user.tasks.each do |task| %>
-<ol>
-  <li>
-    <div>
-      <p><%= task.title %></p>
-    </div>
-    <div>
-      <p><%= task.description %></p>
-    </div>
-    <div>
-      <p><%= task.comments %></p>
-    </div>
-  </li>
-</ol>
+
+<% if @user.tasks.any? %>
+  <% @user.tasks.each do |task| %>
+  <ol>
+    <li>
+      <div>
+        <p><%= task.title %></p>
+      </div>
+      <div>
+        <p><%= task.description %></p>
+      </div>
+      <div>
+        <p><%= task.comments %></p>
+      </div>
+    </li>
+  </ol>
+  <% end %>
 <% end %>
 
 <%= link_to "Edit Account", edit_user_path %>
