@@ -1,7 +1,7 @@
 <h1>Hi <%= @user.name  %></h1>
 
-<% if @user.tasks.any? %>
-  <% @user.tasks.each do |task| %>
+
+<% @user.tasks.each do |task| %>
   <ol>
     <li>
       <div>
@@ -15,7 +15,7 @@
       </div>
     </li>
   </ol>
-  <% end %>
+  
 <% end %>
 
 <%= link_to "Edit Account", edit_user_path %>
