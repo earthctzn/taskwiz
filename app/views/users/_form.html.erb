@@ -3,22 +3,27 @@
     <%= f.label :name, "Name" %>
     <%= f.text_field :name %>
   </div>
-  <div>
+  <div class= "fields_with_errors">
     <%= f.label :email, "Email" %>
     <%= f.text_field :email %>
   </div>
-  <div>
+  <div class= "fields_with_errors">
     <%= f.label :password, "Password" %>
     <%= f.password_field :password %>   
   </div>
-  <div>
+  <div class= "fields_with_errors">
     <%= f.label :confirm_password, "Confirm Password" %>
     <%= f.password_field :confirm_password %>
-  </div>
-  <%= f.submit "Create account" %>
+    <%= f.submit "Submit" %>
+  </div> 
+  <div>
   <% if @user && @user.errors.any? %>
 		<% @user.errors.full_messages.each do |errmsg| %>
 			<p><%= errmsg %></p>
 		<% end %>
 	<% end %>
+  </div>
 <% end %>
+
+  
+  
