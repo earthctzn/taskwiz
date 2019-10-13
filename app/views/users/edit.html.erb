@@ -4,6 +4,6 @@
     <%= form_with model: @user do |f| %>
   <div>
     <%= f.label :admin, "Admin" %>
-    <%= f.check_box :admin %>
+    <%= f.check_box :admin, checked_value= "1" %>
   </div>
   <% end %>
