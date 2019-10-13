@@ -4,15 +4,23 @@ class SessionsController < ApplicationController
   end
   
   def create
-    binding.pry
-    @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.name = auth['info']['name']
-      u.email = auth['info']['email']
+    if params[:uid]
+      @user = User.find_or_create_by(uid: auth['uid']) do |u|
+        u.name = auth['info']['name']
+        u.email = auth['info']['email']
+      end
+      log_in
+    else
+      @user = User.new(session_params)
+      log_in
+      if @user.save
+        redirect_to new_task_path
+      else
+        redirect_to root_path
+      end
     end
-
-    session[:user_id] = @user.id
-
-    render 'welcome/home'
+    
+    
   end
   
 
@@ -27,6 +35,12 @@ class SessionsController < ApplicationController
     request.env['omniauth.auth']
   end
   
+  def session_params
+    params.permit(:name, :email, :password, :password_confirmation, :admin)
+  end
 
+  def log_in
+    session[:user_id] = @user.id
+  end
 
 end
