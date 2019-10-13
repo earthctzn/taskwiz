@@ -1,6 +1,9 @@
 <h1>Create your account:</h1>
-  <%= render "form" %>
+  
+  <%= form_with model: @user do |f| %>
   <div>
-    <%= f.label :admin, "Check box if you are a theme park owner:"%>
+    <%= f.label :admin, "Select for Admin user:"%>
     <%= f.check_box :admin %>
   </div>
+  <% end %>
+  <%= render "form" %>
