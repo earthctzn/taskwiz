@@ -1,9 +1,2 @@
 <h1>Edit your account:</h1>
   <%= render "form" %>
-
-    <%= form_with model: @user do |f| %>
-  <div>
-    <%= f.label :admin, "Admin" %>
-    <%= f.check_box :admin %>
-  </div>
-  <% end %>

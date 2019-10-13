@@ -1,4 +1,8 @@
 <%= form_with model: @user, local: true do |f| %>
+  <div>
+    <%= f.label :admin, "Admin" %>
+    <%= f.check_box :admin %>
+  </div>
   <div class= "fields_with_errors">
     <%= f.label :name, "Name" %>
     <%= f.text_field :name %>
