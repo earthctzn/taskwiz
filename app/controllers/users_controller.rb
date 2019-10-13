@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = user.new(user_params)
+    @user = User.new(user_params)
     if @user.save
       redirect_to user_path
     else
-      
+
       redirect_to new_user_path
     end
   end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = user.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   private
