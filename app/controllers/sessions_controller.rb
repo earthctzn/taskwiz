@@ -4,13 +4,14 @@ class SessionsController < ApplicationController
   end
   
   def create
-    binding.pry
+
     if !auth[:uid].nil?
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
         u.email = auth['info']['email']
       end
       log_in
+      render 'welcome/home'
     else
       @user = User.new(session_params)
       log_in
