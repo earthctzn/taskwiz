@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     if @user.valid?
       redirect_to users_path
     else
-      render :edit
+      redirect_to edit_user_path
     end
   end
 
