@@ -25,6 +25,7 @@ gem 'omniauth', '~> 1.9.0'
 gem 'omniauth-facebook'
 gem 'pry'
 gem 'thin'
+gem 'dotenv-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
