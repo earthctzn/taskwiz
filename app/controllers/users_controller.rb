@@ -18,14 +18,25 @@ class UsersController < ApplicationController
     @user = User.all
   end
 
-  def edit
-    logged_in?
-    @user = current_user
-  end
-
   def show
     @user = User.find_by(id: params[:id])
   end
+
+  def edit
+    logged_in?
+    @user = current_user
+
+  end
+
+  def update
+    @user.update(user_params)
+    if @user.valid?
+      redirect_to users_path
+    else
+      render :edit
+    end
+  end
+
 
   private
 
