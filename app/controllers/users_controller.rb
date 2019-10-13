@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-
-    if @user.save
+    if params[:user]
+      @user = User.create(params[:user])
+    else
+      @user = User.new(user_params)
+      if @user.d
       session[:user_id] = @user.id
       redirect_to new_task_path
     else
