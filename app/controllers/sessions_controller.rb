@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         u.email = auth['info']['email']
       end
       log_in
-      render 'welcome/home'
+      render 'users/index'
     else
       @user = User.new(session_params)
       log_in
