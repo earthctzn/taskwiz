@@ -2,7 +2,8 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :tasks
-  has_many :comments, through: :tasks
+  has_many :comments
+  has_many :commented_tasks, through: :comments
 
   validates :name, presence: true
   validates :email, uniqueness: true
