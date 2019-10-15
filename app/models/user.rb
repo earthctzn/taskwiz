@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :tasks
   has_many :comments
-  # has_many :commented_tasks, through: :comments
+  has_many :commented_tasks, through: :comments, source: :task
 
   validates :name, presence: true
   validates :email, uniqueness: true
