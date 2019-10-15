@@ -4,14 +4,19 @@ class SessionsController < ApplicationController
   end
   
   def create
-
+    @upass = Sysrandom.hex(32)
     if !auth[:uid].nil?
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
         u.email = auth['info']['email']
+        u.password = @upass
+        u.password_confirmation = @upass
       end
       log_in
-      render 'users/index'
+      redirect_to 'users/index'
+      if @user.errors.any?
+        raise @user.errors.full_messages
+      end
     else
       @user = User.new(session_params)
       log_in
