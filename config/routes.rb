@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'welcome#home'
   resources :tasks
   
   resources :users do
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   # post '/users/new', to: 'users#create'
   
   get '/auth/facebook/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
 
-  root 'welcome#home'
+  
 end

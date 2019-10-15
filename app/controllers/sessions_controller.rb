@@ -4,8 +4,9 @@ class SessionsController < ApplicationController
   end
   
   def create
-    @upass = Sysrandom.hex(32)
+    
     if !auth[:uid].nil?
+      @upass = Sysrandom.hex(32)
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
         u.email = auth['info']['email']
