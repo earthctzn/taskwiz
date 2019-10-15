@@ -1,2 +1,19 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
+<h1>Unassigned tasks</h1>
+
+<% @tasks.each do |task| %>
+  <div class="inner">
+	  <article class="box">
+		  <header>
+			  <h2><%= task.title %></h2>
+			  <p><%= @task.date.strftime("%m.%d.%y") %></p>
+		  </header>
+		  <div class="content">
+			  <p><%= task.comment.content %></p>
+		  </div>
+		  <footer>
+			  <a href="generic.html" class="button alt">Learn More</a>
+		  </footer>
+	  </article>
+  </div>
+<% end %>
+<a href="#two" class="more">Learn More</a>
