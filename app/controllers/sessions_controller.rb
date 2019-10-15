@@ -12,14 +12,14 @@ class SessionsController < ApplicationController
         u.password = @upass
         u.password_confirmation = @upass
       end
-      log_in
-      redirect_to 'users/index'
+      log_in(@user)
+      redirect_to users_path
       if @user.errors.any?
         raise @user.errors.full_messages
       end
     else
       @user = User.new(session_params)
-      log_in
+      log_in(@user)
       if @user.save
         redirect_to new_task_path
       else
@@ -46,8 +46,8 @@ class SessionsController < ApplicationController
     params.permit(:name, :email, :password, :password_confirmation, :admin, :uid)
   end
 
-  def log_in
-    session[:user_id] = @user.id
+  def log_in(user)
+    session[:user_id] = user.id
   end
 
 end
