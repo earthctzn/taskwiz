@@ -1,20 +1,18 @@
-<h1>Unassigned tasks</h1>
-
-<% @tasks.each do |task| %>
   <div class="inner">
 	  <article class="box">
 		  <header>
 			  <h2><%= task.title %></h2>
 			  <p><%= task.description %></p>
 		  </header>
+		  <div class="content">
 			  <% task.comments.each do |comment| %>
           <p><%= comment.content %></p>
         <% end %>
+		  </div>
 		  <footer>
 			  <p><%= link_to "New Task", new_task_path %></p>
-        <p><%= link_to "Edit Task", edit_task_path(task) %></p>
+        <p><%= link_to "Edit Task", edit_task_path %></p>
         <p><%= link_to "Home", tasks_path %></p>
 		  </footer>
 	  </article>
   </div>
-<% end %>
