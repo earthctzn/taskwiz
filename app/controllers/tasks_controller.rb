@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.create(task_params)
-    redirect_to task_path
+    redirect_to task_path(@task)
   end
 
   def index
