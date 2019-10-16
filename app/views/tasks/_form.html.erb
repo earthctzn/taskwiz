@@ -1,0 +1,16 @@
+<%= form_with model: @task, local: true do |f| %>
+  <div class= "fields_with_errors">
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %>
+  </div>
+  <div class= "fields_with_errors">
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description %>
+  </div>
+  <div class= "fields_with_errors">
+    <%= f.label :status, "Staus" %>
+    <%= f.select "status", raw("<option>To do</option><option>In Progress</option><option>Awaiting Response</option><option>Done</option>")%>
+    <%= f.submit %> 
+  </div>
+    
+<% end %>

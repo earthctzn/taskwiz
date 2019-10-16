@@ -1,6 +1,9 @@
 <h1>Hey Taskwiz! Log in below. </h1>
 <%= form_with url: login_path do |f| %>
-
+  <div>
+    <%= f.label :admin, "Admin" %>
+    <%= f.check_box :admin %>
+  </div>
   <div>
     <%= f.label :name, "Name:" %>
     <%= f.text_field :name %>

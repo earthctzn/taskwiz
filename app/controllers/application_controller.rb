@@ -3,10 +3,14 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def logged_in?
-    redirect_to '/' if !current_user
+    !current_user
   end
 
-  def admin?
+  def authenticate
+    redirect_to '/' if !logged_in?
+  end
+
+  def redirect_admin
     redirect_to users_path if !current_user.admin
   end
 

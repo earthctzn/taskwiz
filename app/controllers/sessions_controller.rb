@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   
   def create
     
-    if !auth[:uid].nil?
+    if auth && !auth[:uid].nil?
       @upass = Sysrandom.hex(32)
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
@@ -20,8 +20,9 @@ class SessionsController < ApplicationController
       end
     else
       @user = User.new(session_params)
-      log_in(@user)
+      
       if @user.save
+        log_in(@user)
         redirect_to new_task_path
       else
         redirect_to root_path
