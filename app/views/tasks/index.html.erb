@@ -1,5 +1,5 @@
 <h1>Unassigned tasks</h1>
 
 <% @tasks.each do |task| %>
-	<%= render partial: "task", locals: {task: task} %>
+	<%= render partial: "task", collection: @tasks, as: :task %>
 <% end %>
