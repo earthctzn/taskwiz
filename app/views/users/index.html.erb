@@ -1,4 +1,7 @@
-<h1>Users tasks </h1>
+<h1>All Users </h1>
 
-
-<%= @user.name %>
+<ol>
+  <% @users.each do |user| %>
+    <li><%= link_to user.name, user_path(user) %> - Tasks <%= user.tasks.count %></li>
+  <% end %>
+</ol>

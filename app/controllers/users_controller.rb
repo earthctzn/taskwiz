@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def index
     logged_in?
-    @user = User.all
+    @users = User.all
   end
 
   def show
