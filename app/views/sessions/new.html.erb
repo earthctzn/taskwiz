@@ -1,29 +1,18 @@
 <h1>Hey Taskwiz! Log in below. </h1>
 <%= form_with url: login_path do |f| %>
-  <div>
-    <%= f.label :admin, "Admin" %>
-    <%= f.check_box :admin %>
+  <div >
+    <%= f.text_field :name, :placeholder => "Name" %>
   </div>
-  <div>
-    <%= f.label :name, "Name:" %>
-    <%= f.text_field :name %>
+  <div >
+    <%= f.text_field :email, :placeholder => "Email" %>
   </div>
-
-  <div>
-    <%= f.label :email, "Eemail:" %>
-    <%= f.text_field :email %>
+  <div >
+    <%= f.password_field :password, :placeholder => "Password" %>   
   </div>
-
-  <div>
-    <%= f.label :password, "Password:" %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div>
-    <%= f.label :password_confirmation, "Confirm Password:" %>
-    <%= f.password_field :password_confirmation %>
+  <div >
+    <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
     <%= f.submit %>
-  </div>
+  </div> 
 
 <% end %>
 

@@ -1,24 +1,20 @@
 <%= form_with model: @user, local: true do |f| %>
   <div>
     <%= f.label :admin, "Admin" %>
-    <%= f.check_box :admin %>
+    <%= f.select "admin", raw("<option>Admin?</option><option>True</option><option>False</option>") %>
   </div>
   <div >
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :placeholder => "Name" %>
   </div>
   <div >
-    <%= f.label :email, "Email" %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :placeholder => "Email" %>
   </div>
   <div >
-    <%= f.label :password, "Password" %>
-    <%= f.password_field :password %>   
+    <%= f.password_field :password, :placeholder => "Password" %>   
   </div>
   <div >
-    <%= f.label :password_confirmation, "Confirm Password" %>
-    <%= f.password_field :password_confirmation %>
-    <%= f.submit "Submit" %>
+    <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
+    <%= f.submit %>
   </div> 
   <div>
   <% if @user && @user.errors.any? %>
