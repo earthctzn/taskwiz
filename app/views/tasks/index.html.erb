@@ -1,5 +1,7 @@
-<h1>Unassigned tasks</h1>
+<h1>All Tasks</h1>
 
-<% @tasks.each do |task| %>
-	<%= render partial: "task", collection: @tasks, as: :task %>
-<% end %>
+<ol>
+	<% @tasks.each do |task| %>	
+    <li><%= link_to task.title, task_path(task) %> - Assigned to: <%= task.user.name if !task.user.nil? %></li>
+	<% end %>	
+</ol>
