@@ -1,5 +1,5 @@
 <h1>Welcome to TaskWiz!</h1>
-<p><%= button_to "Sign Up", new_user_path %></p>
-<p><%= button_to "Log In", login_path %></p>
-<p><%= button_to "Log in with Facebook!", "/auth/facebook", method: :post %></p>
+<button><%= link_to "Sign Up", new_user_path %></button>
+<button><%= link_to "Log In", login_path %></button>
+<button><%= link_to "Log in with Facebook!", "/auth/facebook", method: :post %></button>
 
