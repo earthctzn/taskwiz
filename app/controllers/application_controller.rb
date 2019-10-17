@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_admin
+    #need to change this or create an actual admin path 
     redirect_to users_path if !current_user.admin
   end
 
