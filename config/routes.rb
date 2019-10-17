@@ -6,7 +6,7 @@ Rails.application.routes.draw do
  
   
   resources :users do
-    resources :tasks, only: [:edit, :show, :create]
+    resources :tasks, only: [:new, :edit, :show, :create]
   end
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

@@ -9,11 +9,21 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @tasks = @user.tasks
+    else
+      @tasks = Task.all
+    end
   end
 
   def edit
-    @task = Task.find_by(id: params[:id])
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @task = @user.task
+    else
+      @task = Task.find_by(id: params[:id])
+    end
   end
 
   def update
