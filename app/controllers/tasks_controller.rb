@@ -18,6 +18,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    authenticate
     if params[:user_id]
       @user = User.find(params[:user_id])
       @task = @user.task
@@ -27,9 +28,8 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find_by(id: params[:id])
-    @task.update(task_params)
-    if @task.valid?
+    authenticate
+    if @task.update(task_params)
       redirect_to tasks_path
     else
       redirect_to edit_task_path

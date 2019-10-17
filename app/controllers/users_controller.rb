@@ -6,9 +6,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      session[:user_id] = @user.id
+      log_in(@user)
       redirect_to new_task_path
     else
+      flash[:snap] = "Looks like there was an issue with your signup..."
       redirect_to new_user_path
     end
   end
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
     if @user.valid?
       redirect_to users_path
     else
+      flash[:snap] = "Account not updated..."
       redirect_to edit_user_path
     end
   end

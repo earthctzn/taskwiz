@@ -1,6 +1,5 @@
 <%= form_with model: @user, local: true do |f| %>
   <div>
-    <%= f.label :admin, "Admin" %>
     <%= f.select "admin", raw("<option>Admin?</option><option>True</option><option>False</option>") %>
   </div>
   <div >

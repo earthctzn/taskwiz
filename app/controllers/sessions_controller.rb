@@ -4,33 +4,35 @@ class SessionsController < ApplicationController
   end
   
   def create
-    
-    if auth && !auth[:uid].nil?
 
-      @upass = Sysrandom.hex(32)
-      @user = User.find_or_create_by(uid: auth['uid']) do |u|
-        u.name = auth['info']['name']
-        u.email = auth['info']['email']
-        u.password = @upass
-        u.password_confirmation = @upass
-      end
-      
-      log_in(@user)
-      redirect_to new_task_path
-
-    else
-
-      @user = User.new(session_params)
-      if @user.save
+    if @user = User.find_by(email: params[:email])
+      if @user.authenticate(params[:password])
         log_in(@user)
+        flash[:yay] = "Hey now, welcome #{user.name}!"
         redirect_to new_task_path
       else
-        redirect_to root_path
+        flash[:snap] = "Looks like there was an issue with your login..."
+        redirect_to login_path
       end
-
+    else
+        flash[:snap] = "Looks like there was an issue with your login..."
+        redirect_to login_path
     end
-    
-    
+  
+ 
+  end
+
+  def fbauth
+    user = User.from_facebook(auth)
+    if user.save
+      flash[:yay] = "Hey now, welcome #{user.name}!"
+      log_in(user)
+      redirect_to new_task_path
+    else
+      flash[:snap] = "Looks like there was an issue with your login..."
+      redirect_to root_path
+    end
+
   end
   
 

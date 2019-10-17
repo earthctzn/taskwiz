@@ -1,2 +1,2 @@
-<%= binding.pry %>
-<%= render partial: "task", collection: @tasks, as: :task %>
+<h1>Your task</h1>
+<%= render partial: "task", locals: {task: @task} %>
