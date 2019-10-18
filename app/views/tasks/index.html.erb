@@ -1,7 +1,8 @@
 <h1>All Tasks</h1>
-
-<ol>
-	<% @tasks.each do |task| %>	
-    <li><%= link_to task.title, task_path(task) %> - Assigned to: <%= task.user.name if !task.user.nil? %></li>
-	<% end %>	
-</ol>
+<% if !@tasks.nil? %>
+	<% @tasks.each do |task| %>
+		<%= render 'task', task: task %>
+	<% end %>
+<% else %>
+	<%= link_to "Tasks is empty. Click here to create a new one", new_user_task_path(current_user) %>
+<% end %>	

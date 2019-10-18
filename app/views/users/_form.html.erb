@@ -1,20 +1,21 @@
-<%= form_with model: @user, local: true do |f| %>
-  <div>
-    <%= f.select "admin", raw("<option>Admin?</option><option>True</option><option>False</option>") %>
-  </div>
-  <div >
-    <%= f.text_field :name, :placeholder => "Name" %>
-  </div>
-  <div >
-    <%= f.text_field :email, :placeholder => "Email" %>
-  </div>
-  <div >
-    <%= f.password_field :password, :placeholder => "Password" %>   
-  </div>
-  <div >
-    <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
-    <%= f.submit %>
-  </div> 
+<%= form_with model: user, local: true do |f| %>
+  <section id="one" >
+    <div class="inner">
+      <article class="box">
+        <header>
+          <p><%= f.select "admin", raw("<option>Admin?</option><option>True</option><option>False</option>") %></p>
+          <p><%= f.text_field :name, :placeholder => "Name" %></p>
+          <p><%= f.text_field :email, :placeholder => "Email" %></p>
+          <p><%= f.password_field :password, :placeholder => "Password" %></p>
+          <p><%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></p>
+        </header>
+        <footer>
+        <%= f.submit  %>
+      </footer>
+      </article>
+    </div>
+  </section>
+
   <div>
   <% if @user && @user.errors.any? %>
 		<% @user.errors.full_messages.each do |errmsg| %>
@@ -22,7 +23,8 @@
 		<% end %>
 	<% end %>
   </div>
+
 <% end %>
 
-  
+
   

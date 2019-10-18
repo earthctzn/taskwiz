@@ -1,18 +1,21 @@
 <h1>Hey Taskwiz! Log in below. </h1>
-<%= form_with url: login_path do |f| %>
-  <div >
-    <%= f.text_field :name, :placeholder => "Name" %>
-  </div>
-  <div >
-    <%= f.text_field :email, :placeholder => "Email" %>
-  </div>
-  <div >
-    <%= f.password_field :password, :placeholder => "Password" %>   
-  </div>
-  <div >
-    <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
-    <%= f.submit %>
-  </div> 
+<%= form_tag url: login_path do  %>
+  <section id="one" >
+    <div class="inner">
+      <article class="box">
+        <header>
+          <p><%= text_field_tag :name,  "", :placeholder => "Name" %></p>
+          <p><%= text_field_tag :email, "", :placeholder => "Email" %></p>
+          <p><%= password_field_tag :password, "", :placeholder => "Password" %></p>
+          <p><%= password_field_tag :password_confirmation, "", :placeholder => "Confirm Password" %></p>
+        </header>
+        <footer>
+        <%= submit_tag  %>
+        <button><%= link_to "Back", root_path  %></button>
+      </footer>
+      </article>
+    </div>
+  </section>
 <% end %>
-<button><%= link_to "Back", root_path  %></button>
+
 

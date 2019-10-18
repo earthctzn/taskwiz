@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
   def create
 
     if @user = User.find_by(email: params[:email])
-      if @user.authenticate(params[:password])
+      if @user && @user.authenticate(params[:password])
         log_in(@user)
-        flash[:yay] = "Hey now, welcome #{user.name}!"
+        flash[:yay] = "Hey now, welcome #{@user.name}!"
         redirect_to new_task_path
       else
         flash[:snap] = "Looks like there was an issue with your login..."
@@ -51,8 +51,6 @@ class SessionsController < ApplicationController
     params.permit(:name, :email, :password, :password_confirmation, :admin, :uid)
   end
 
-  def log_in(user)
-    session[:user_id] = user.id
-  end
+
 
 end

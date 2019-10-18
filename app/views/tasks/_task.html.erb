@@ -1,3 +1,4 @@
+<section id="one" >
   <div class="inner">
 	  <article class="box">
 		  <header>
@@ -11,8 +12,9 @@
 		  </div>
 		  <footer>
 			  <p><%= link_to "New Task", new_task_path %></p>
-        <p><%= link_to "Edit Task", edit_task_path %></p>
+        <p><%= link_to "Edit Task", edit_task_path(task) %></p>
         <p><%= link_to "Home", tasks_path %></p>
 		  </footer>
 	  </article>
   </div>
+</section>
