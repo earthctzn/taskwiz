@@ -1,11 +1,14 @@
 class TasksController < ApplicationController
+  before_action :authenticate
   before_action :redirect_admin, except: [:index, :show]
+  
   def new
     @user = current_user
     @task = @user.tasks.build
   end
 
   def create
+    
     if params[:user_id]
       @task = Task.new(task_params)
       if @task.save
@@ -19,20 +22,14 @@ class TasksController < ApplicationController
 
   def index
     if params[:user_id]
-      @user = User.find_by(id: params[:user_id])
-      if @user.nil?
-        flash[:error] = "User not found"
-        redirect_to users_path
-      else
-        @tasks = @user.tasks
-      end
+      @user = User.find(params[:user_id])
+      @tasks = @user.tasks
     else
       @tasks = Task.all
     end
   end
 
   def edit
-    authenticate
     if params[:user_id]
       @user = User.find(params[:user_id])
       @task = @user.task
@@ -42,11 +39,10 @@ class TasksController < ApplicationController
   end
 
   def update
-    authenticate
     if @task.update(task_params)
       redirect_to tasks_path
     else
-      redirect_to edit_task_path
+      redirect_to edit_task_path(@task)
     end
   end
 
@@ -54,7 +50,7 @@ class TasksController < ApplicationController
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
       @task = @user.tasks.find_by(id: params[:id])
-      if @task.nil?
+      if @task.title.nil?
         flash[:error] = "Task not found"
         redirect_to tasks_path
       else

@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authenticate
+
   def new
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       log_in(@user)
       redirect_to new_user_task_path(@user)
@@ -25,9 +26,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    logged_in?
     @user = current_user
-
   end
 
   def update

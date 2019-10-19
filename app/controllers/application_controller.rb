@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    redirect_to '/' if !logged_in?
+    render '404' if !logged_in?
   end
 
   def redirect_admin
