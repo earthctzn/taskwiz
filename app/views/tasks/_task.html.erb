@@ -14,7 +14,7 @@
 		  </div>
 
 		  <footer>
-			  <p><%= link_to "Home", tasks_path %> | <%= link_to "New Task", new_task_path %> | <%= link_to "Edit Task", edit_task_path(task) %></p>
+			  <p><%= link_to "Home", tasks_path %> | <%= link_to "New Task", new_user_task_path(current_user) %> | <%= link_to "Edit Task", edit_user_task_path(current_user, task) %></p>
 		  </footer>
       
 	  </article>

@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def logged_in?
-    !current_user
+    current_user
   end
 
   def authenticate
-    render '404' if !logged_in?
+    redirect_to '/' if !logged_in?
   end
 
   def redirect_admin

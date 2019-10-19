@@ -1,16 +1,16 @@
 class TasksController < ApplicationController
   before_action :authenticate
-  before_action :redirect_admin, except: [:index, :show]
+  # before_action :redirect_admin, except: [:index, :show]
   
   def new
-    @user = current_user
-    @task = @user.tasks.build
+    @task = current_user.tasks.build
   end
 
   def create
     
     if params[:user_id]
       @task = Task.new(task_params)
+      @task.user = current_user
       if @task.save
         redirect_to user_task_path(current_user, @task)
       else
@@ -32,17 +32,17 @@ class TasksController < ApplicationController
   def edit
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @task = @user.task
+      @task = @user.tasks.find_by(id: params[:id])
     else
       @task = Task.find_by(id: params[:id])
     end
   end
 
   def update
-    if @task.update(task_params)
+    if @task && @task.update(task_params)
       redirect_to tasks_path
     else
-      redirect_to edit_task_path(@task)
+      redirect_to edit_user_task_path(current_user, @task)
     end
   end
 
@@ -50,7 +50,7 @@ class TasksController < ApplicationController
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
       @task = @user.tasks.find_by(id: params[:id])
-      if @task.title.nil?
+      if !@task
         flash[:error] = "Task not found"
         redirect_to tasks_path
       else
@@ -64,7 +64,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.permit(:title, :description, :status, :comments => [])
+    params.require(:task).permit(:title, :description, :status, :comment_ids[0] =>[])
   end
 end
 

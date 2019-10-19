@@ -12,12 +12,11 @@ class UsersController < ApplicationController
       redirect_to new_user_task_path(@user)
     else
       flash[:snap] = "Looks like there was an issue with your signup..."
-      redirect_to new_user_path
+      render 'new'
     end
   end
 
   def index
-    logged_in?
     @users = User.all
   end
 
@@ -36,7 +35,7 @@ class UsersController < ApplicationController
       redirect_to users_path
     else
       flash[:snap] = "Account not updated..."
-      redirect_to edit_user_path(@user)
+      render 'edit'
     end
   end
 

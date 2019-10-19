@@ -12,7 +12,9 @@
             <p><%= form.text_field :description, :placeholder => "Description" %></p>
 				  </header>
 				  <div class="content">
-            <%= form.fields_for :comments, task.comments do |comment_form| %>
+			
+            <%= form.fields_for :comments, task.comments.build do |comment_form| %>
+							
               <p><%= comment_form.text_field :content, :placeholder => "Comment" %></p>
             <% end %>
 				  </div>

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if @user && @user.authenticate(params[:password])
         log_in(@user)
         flash[:yay] = "Hey now, welcome #{@user.name}!"
-        redirect_to new_task_path
+        redirect_to new_user_task_path(current_user)
       else
         flash[:snap] = "Looks like there was an issue with your login..."
         redirect_to login_path
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
     if user.save
       flash[:yay] = "Hey now, welcome #{user.name}!"
       log_in(user)
-      redirect_to new_task_path
+      redirect_to new_user_task_path(current_user)
     else
       flash[:snap] = "Looks like there was an issue with your login..."
       redirect_to root_path

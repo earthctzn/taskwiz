@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root 'welcome#home'
   
   resources :users do
-    resources :tasks, only: [:new, :edit, :show, :index, :create]
+    resources :tasks, only: [:new, :edit, :update, :show, :index, :create]
   end
 
-  resources :tasks, only: [:edit, :show, :index, :create, :delete]
+  resources :tasks, only: [:edit, :show, :index, :update, :create, :delete]
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
