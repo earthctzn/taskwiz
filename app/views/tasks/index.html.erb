@@ -1,8 +1,35 @@
 <h1>All Tasks</h1>
 <% if !@tasks.nil? %>
+
 	<% @tasks.each do |task| %>
-		<%= render 'task', task: task %>
+		<% if !task.title.nil? %>
+		  <section id="one" >
+		  	<div class="inner">
+			  	<article class="box">
+
+				  	<header>
+            	<p><%= link_to task.title, task_path(task)%> -  Status: <%= task.status %></p>
+            	<p><%= task.description%></p>
+				  	</header>
+						
+				  	<div class="content">
+            	<p><%= link_to "Comments", task_path(task)%> - <%= task.comments.count %>	</p>
+							<p>Latest Comment</p>
+							<% if task.comments.any? %>
+              	<p><%= task.comments.last.content %></p>
+							<% end %>
+				  	</div>
+
+				  	<footer>
+							<%= link_to "Add Comment", edit_task_path(task)  %>
+			  		</footer>
+						
+			  	</article>
+		  	</div>
+  		</section>
+		<% end %>
 	<% end %>
+
 <% else %>
-	<%= link_to "Tasks is empty. Click here to create a new one", new_user_task_path(current_user) %>
+	<p><%= link_to "Tasks is empty. Click here to create a new one", new_user_task_path(current_user) %></p>	
 <% end %>	

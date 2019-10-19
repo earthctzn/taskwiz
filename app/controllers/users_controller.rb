@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in(@user)
-      redirect_to new_task_path
+      redirect_to new_user_task_path(@user)
     else
       flash[:snap] = "Looks like there was an issue with your signup..."
       redirect_to new_user_path
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       redirect_to users_path
     else
       flash[:snap] = "Account not updated..."
-      redirect_to edit_user_path
+      redirect_to edit_user_path(@user)
     end
   end
 

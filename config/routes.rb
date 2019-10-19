@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :tasks, only: [:new, :edit, :show, :create]
   end
-  resources :tasks
+
+  resources :tasks, only: [:edit, :show, :create, :delete]
+  
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
