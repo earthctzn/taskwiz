@@ -19,8 +19,5 @@ class User < ApplicationRecord
       u.password = @upass
       u.password_confirmation = @upass
     end
-
-    log_in(@user)
-    redirect_to new_task_pathß
   end
 end

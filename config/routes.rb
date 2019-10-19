@@ -3,15 +3,15 @@ Rails.application.routes.draw do
   root 'welcome#home'
   
   resources :users do
-    resources :tasks, only: [:new, :edit, :show, :create]
+    resources :tasks, only: [:new, :edit, :show, :index, :create]
   end
 
-  resources :tasks, only: [:edit, :show, :create, :delete]
-  
+  resources :tasks, only: [:edit, :show, :index, :create, :delete]
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
-  # post '/users/new', to: 'users#create'
+
   
   get '/auth/facebook/callback', to: 'sessions#fbauth'
   get 'auth/failure', to: redirect('/')
