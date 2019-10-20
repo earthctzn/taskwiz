@@ -28,7 +28,7 @@ gem 'thin'
 gem 'dotenv-rails'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 gem 'sysrandom', '~> 1.0', '>= 1.0.5'
-
+gem 'jquery-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

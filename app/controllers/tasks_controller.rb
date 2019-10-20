@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task && @task.update(task_params)
+    if !@task.nil? && @task.update(task_params)
       redirect_to tasks_path
     else
       redirect_to edit_user_task_path(current_user, @task)
