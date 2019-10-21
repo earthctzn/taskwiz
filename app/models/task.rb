@@ -3,11 +3,8 @@ class Task < ApplicationRecord
    has_many :comments
    has_many :users, through: :comments
 
-   accepts_nested_attributes_for :comments
+   accepts_nested_attributes_for :comments, reject_if: proc { |attributes| attributes['content'].blank? }
 
-   # def comments_attributes(comment)
-   #    self.comment = Comment.find_or_create_by(comment_attributes)
-   # end
 
 
 

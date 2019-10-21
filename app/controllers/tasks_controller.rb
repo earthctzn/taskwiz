@@ -4,18 +4,19 @@ class TasksController < ApplicationController
   
   def new
     @task = current_user.tasks.build
+    @task.comments.build
   end
 
   def create
     
     if params[:user_id]
       @task = Task.new(task_params)
-      @task.user = current_user
+      @task.user = current_user   
       if @task.save
-        redirect_to user_task_path(current_user, @task)
+        redirect_to user_task_path(@task.user, @task)
       else
         flash[:snap] = "That did not work. Try again."
-        redirect_to new_user_task(current_user)
+        redirect_to new_user_task_path(current_user)
       end
     end
   end
@@ -33,6 +34,7 @@ class TasksController < ApplicationController
     if params[:user_id]
       @user = User.find(params[:user_id])
       @task = @user.tasks.find_by(id: params[:id])
+      current_user_comment
     else
       @task = Task.find_by(id: params[:id])
     end
@@ -50,6 +52,7 @@ class TasksController < ApplicationController
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
       @task = @user.tasks.find_by(id: params[:id])
+      current_user_comment
       if !@task
         flash[:error] = "Task not found"
         redirect_to tasks_path
@@ -64,7 +67,14 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :status, :comment_ids[0] =>[])
+    params.require(:task).permit(:title, :description, :status, comments_attributes: [
+      :content
+    ])
   end
+
+  def current_user_comment
+    @comment = current_user.comments.find_by(id: params[:id])
+  end
+  
 end
 
