@@ -10,15 +10,20 @@ class TasksController < ApplicationController
   def create
     
     if params[:user_id]
-      @task = Task.new(task_params)
-      @task.user = current_user   
+      tps = task_params
+      tps[:comments_attributes]["0"][:user_id] = current_user.id
+      #binding.pry
+      @task = current_user.tasks.build(tps)
+
       if @task.save
         redirect_to user_task_path(@task.user, @task)
       else
+
         flash[:snap] = "That did not work. Try again."
         redirect_to new_user_task_path(current_user)
       end
     end
+
   end
 
   def index
