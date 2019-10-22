@@ -1,9 +1,9 @@
-<h1>Hey Taskwiz! Log in below. </h1>
 <%= form_tag url: login_path do  %>
   <section id="one" >
     <div class="inner">
       <article class="box">
         <header>
+        <p><h2> Log in below! </h2></p>
           <p><%= text_field_tag :name,  "", :placeholder => "Name" %></p>
           <p><%= text_field_tag :email, "", :placeholder => "Email" %></p>
           <p><%= password_field_tag :password, "", :placeholder => "Password" %></p>
@@ -11,11 +11,9 @@
         </header>
         <footer>
         <%= submit_tag  %>
-        <button><%= link_to "Back", root_path  %></button>
+        <%= button_to "Back", root_path  %>
       </footer>
       </article>
     </div>
   </section>
 <% end %>
-
-

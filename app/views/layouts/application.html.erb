@@ -4,12 +4,34 @@
     <title>Taskwiz</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+ 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    
+		<!-- Header -->
+		<header id="header">
+			<button><%= link_to "Sign Up", new_user_path %></button>
+      <button><%= link_to "Log In", login_path %></button>
+      <button><%= link_to "Log in with Facebook!", "/auth/facebook", method: :post %></button>
+		
+		</header>
+
+		<!-- Nav -->
+  	<nav id="menu">
+			<ul class="links">
+          <li><%= link_to "Sign Up", new_user_path %></li>
+          <li><%= link_to "Log In", login_path %></li>
+          <li><%= link_to "Log in with Facebook!", "/auth/facebook", method: :post %></li>
+			</ul>
+		</nav>
+
+
+
+    <section id="one" class="fields_with_errors">
+      <%= yield %>
+    </section>
   </body>
 </html>
