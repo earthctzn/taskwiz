@@ -12,7 +12,6 @@ class TasksController < ApplicationController
     if params[:user_id]
       tps = task_params
       tps[:comments_attributes]["0"][:user_id] = current_user.id
-      #binding.pry
       @task = current_user.tasks.build(tps)
 
       if @task.save
@@ -20,7 +19,7 @@ class TasksController < ApplicationController
       else
 
         flash[:snap] = "That did not work. Try again."
-        redirect_to new_user_task_path(current_user)
+        redirect_to new_user_task_path(@task.user)
       end
     end
 
@@ -28,7 +27,7 @@ class TasksController < ApplicationController
 
   def index
     if params[:user_id]
-      @user = User.find(params[:user_id])
+      find_user
       @tasks = @user.tasks
     else
       @tasks = Task.all
@@ -37,26 +36,31 @@ class TasksController < ApplicationController
 
   def edit
     if params[:user_id]
-      @user = User.find(params[:user_id])
-      @task = @user.tasks.find_by(id: params[:id])
+      find_user
+      find_user_task
       current_user_comment
     else
-      @task = Task.find_by(id: params[:id])
+      @task.find(params[:id])
     end
   end
 
   def update
-    if !@task.nil? && @task.update(task_params)
-      redirect_to tasks_path
+    tps = task_params
+    tps[:comments_attributes]["0"][:user_id] = current_user.id
+    find_user
+    find_user_task
+    binding.pry
+    if !@task.nil? && @task.update(tps)
+      redirect_to user_tasks_path(@user)
     else
-      redirect_to edit_user_task_path(current_user, @task)
+      redirect_to edit_user_task_path(@user, @task)
     end
   end
 
   def show
     if params[:user_id]
-      @user = User.find_by(id: params[:user_id])
-      @task = @user.tasks.find_by(id: params[:id])
+      find_user
+      find_user_task
       current_user_comment
       if !@task
         flash[:error] = "Task not found"
@@ -79,6 +83,14 @@ class TasksController < ApplicationController
 
   def current_user_comment
     @comment = current_user.comments.find_by(id: params[:id])
+  end
+
+  def find_user_task
+    @task = @user.tasks.find_by(id: params[:id])
+  end
+
+  def find_user
+    @user = User.find(params[:user_id])
   end
   
 end
