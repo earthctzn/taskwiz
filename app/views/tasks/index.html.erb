@@ -8,8 +8,8 @@
 			  	<article class="box">
 
 				  	<header>
-            	<p><%= link_to task.title, task_path(task)%> -  Status: <%= task.status %></p>
-            	<p><%= task.description%></p>
+            	<h2><%= link_to task.title, task_path(task)%> | Status: <%= task.status %> | Task Owner: <%= task.user.name %></h2>
+            	<p> Description: <%= task.description%></p>
 				  	</header>
 						
 				  	<div class="content">
@@ -31,5 +31,5 @@
 	<% end %>
 
 <% else %>
-	<p><%= link_to "Tasks is empty. Click here to create a new one", new_user_task_path(current_user) %></p>	
+	<p><%= link_to "Woohoo no tasks are due! Click here to create a new one", new_user_task_path(current_user) %></p>	
 <% end %>	

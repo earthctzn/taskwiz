@@ -3,7 +3,7 @@
 	  <article class="box">
 
 		  <header>
-			  <h2><%= task.title %> - <%= task.user.name %>  </h2>
+			  <h3><%= link_to task.title, task_path(task)%> | Status: <%= task.status %> | Owner: <%= task.user.name %></h3>
 			  <p><%= task.description %></p>
 		  </header>
 
@@ -14,7 +14,7 @@
 		  </div>
 
 		  <footer>
-			  <p><%= link_to "Home", tasks_path %> | <%= link_to "New Task", new_user_task_path(current_user) %> | <%= link_to "Edit Task", edit_user_task_path(current_user, task) %></p>
+			  <p><%= link_to "My Tasks", tasks_path %> | <%= link_to "New Task", new_user_task_path(current_user) %> | <%= link_to "Edit Task", edit_user_task_path(current_user, task) %></p>
 		  </footer>
       
 	  </article>
