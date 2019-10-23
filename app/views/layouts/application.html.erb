@@ -2,9 +2,12 @@
 <html>
   <head>
     <title>Taskwiz</title>
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
- 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,14 +15,30 @@
   <body>
     
 		<!-- Header -->
-		<header id="header">
-			<button><%= link_to "Sign Up", new_user_path %></button>
-      <button><%= link_to "Log In", login_path %></button>
-      <button><%= link_to "Log in with Facebook!", "/auth/facebook", method: :post %></button>
-		
-		</header>
+
 
 		<!-- Nav -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href=<%= "#{link_to root_path}" %>>TaskWiz</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <%= link_to "Sign Up", new_user_path, class: "nav-link" %> <span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log In", login_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Log in with Facebook!', '/auth/facebook', class: "nav-link", method: :post%>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
   	<nav id="menu">
 			<ul class="links">
           <li><%= link_to "Sign Up", new_user_path %></li>
@@ -33,5 +52,16 @@
     <section id="one" class="fields_with_errors">
       <%= yield %>
     </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+  </body>
   </body>
 </html>
