@@ -2,24 +2,8 @@
 
 
 <% @user.tasks.each do |task| %>
-  <div class="inner">
-	  <article class="box">
-		  <header>
-			  <h2><%= task.title %></h2>
-			  <p><%= task.description %></p>
-		  </header>
-		  <div class="content">
-			  <% task.comments.each do |comment| %>
-          <p><%= comment.content %></p>
-        <% end %>
-		  </div>
-		  <footer>
-			  <p><%= link_to "New Task", new_user_task_path(@user) %></p>
-        <p><%= link_to "Edit Account", edit_user_path %></p>
-        <p><%= link_to "Back", users_path %></p>
-		  </footer>
-	  </article>
-  </div>
+	<%= render "task", task: @task %>
+
 
 <% end %>
 

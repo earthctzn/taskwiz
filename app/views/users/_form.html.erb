@@ -3,6 +3,13 @@
     <div class="inner">
       <article class="box">
         <header>
+        
+            <% if @user && @user.errors.any? %>
+              <% @user.errors.full_messages.each do |errmsg| %>
+                <p><%= errmsg %></p>
+              <% end %>
+            <% end %>
+
           <p><%= f.select "admin", raw("<option>Admin?</option><option>True</option><option>False</option>") %></p>
           <p><%= f.text_field :name, :placeholder => "Name" %></p>
           <p><%= f.text_field :email, :placeholder => "Email" %></p>
@@ -16,13 +23,7 @@
     </div>
   </section>
 
-  <div>
-  <% if @user && @user.errors.any? %>
-		<% @user.errors.full_messages.each do |errmsg| %>
-			<p><%= errmsg %></p>
-		<% end %>
-	<% end %>
-  </div>
+  
 
 <% end %>
 

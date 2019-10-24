@@ -37,9 +37,13 @@ class TasksController < ApplicationController
 
   def edit
     if params[:user_id]
+      
       @user = User.find(params[:user_id])
       @task = @user.tasks.find_by(id: params[:id])
-      current_user_comment
+      @task.comments.build
+        if !current_user_comment.content.nil?
+          current_user_comment.content   
+        end
     else
       @task = Task.find_by(id: params[:id])
     end
@@ -48,10 +52,10 @@ class TasksController < ApplicationController
   def update
     tps = task_params
     tps[:comments_attributes]["0"][:user_id] = current_user.id
-    binding.pry
+
     @user = current_user
     @task = @user.tasks.last
-
+    binding.pry
     if !@task.nil? && @task.update(tps)
       redirect_to tasks_path
     else

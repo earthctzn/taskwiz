@@ -3,6 +3,11 @@
 	  <article class="box">
 
 		  <header>
+			  <% if @user && @user.errors.any? %>
+          <% @user.errors.full_messages.each do |errmsg| %>
+            <p><%= errmsg %></p>
+          <% end %>
+        <% end %>
 			  <h3><%= link_to task.title, task_path(task)%> | Status: <%= task.status %> | Owner: <%= task.user.name %></h3>
 			  <p><%= task.description %></p>
 		  </header>

@@ -7,6 +7,13 @@
 		  <div class="inner">
 			  <article class="box">
 				  <header>
+
+            <% if @user && @user.errors.any? %>
+              <% @user.errors.full_messages.each do |errmsg| %>
+                <p><%= errmsg %></p>
+              <% end %>
+            <% end %>
+
             <p><%= form.text_field :title, :placeholder => "Title"%></p>
             <p><%= form.select "status", raw("<option>Please choose a status</option><option>To do</option><option>In Progress</option><option>Awaiting Response</option><option>Done</option>")%></p>
             <p><%= form.text_field :description, :placeholder => "Description" %></p>
@@ -21,13 +28,7 @@
 			    </footer>
 			  </article>
 		  </div>
-			<div>
-  			<% if @user && @user.errors.any? %>
-					<% @user.errors.full_messages.each do |errmsg| %>
-						<p><%= errmsg %></p>
-					<% end %>
-				<% end %>
-  		</div>
+
   </section>
 
 <% end %>

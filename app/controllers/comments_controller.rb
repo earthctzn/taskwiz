@@ -4,6 +4,8 @@ class CommentsController < ApplicationController
     
   end
   def create
+    authenticate
+    
     
   end
 end
