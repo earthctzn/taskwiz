@@ -1,0 +1,25 @@
+<%= form_with model:[comment.user, comment], local: true do |form| %>
+  <section id="one" >
+		  <div class="inner">
+			  <article class="box">
+				  <header>
+
+            <% if @user && @user.errors.any? %>
+              <% @user.errors.full_messages.each do |errmsg| %>
+                <p><%= errmsg %></p>
+              <% end %>
+            <% end %>
+
+            <p><%= form.text_field :content, :placeholder => "Comment"%></p>
+            
+				  </header>
+
+				  <footer>
+					  <%= form.submit  %>
+			    </footer>
+			  </article>
+		  </div>
+
+  </section>
+
+<% end %>

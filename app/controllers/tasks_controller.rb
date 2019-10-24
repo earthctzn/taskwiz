@@ -40,10 +40,7 @@ class TasksController < ApplicationController
       
       @user = User.find(params[:user_id])
       @task = @user.tasks.find_by(id: params[:id])
-      @task.comments.build
-        if !current_user_comment.content.nil?
-          current_user_comment.content   
-        end
+
     else
       @task = Task.find_by(id: params[:id])
     end
@@ -53,9 +50,10 @@ class TasksController < ApplicationController
     tps = task_params
     tps[:comments_attributes]["0"][:user_id] = current_user.id
 
+    binding.pry
     @user = current_user
     @task = @user.tasks.last
-    binding.pry
+
     if !@task.nil? && @task.update(tps)
       redirect_to tasks_path
     else
