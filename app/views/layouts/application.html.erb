@@ -24,7 +24,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarToggler">
-      <% if !logged_in? %>
+      
         <%= link_to 'TaskWiz', root_path, class: "navbar-brand" %>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
@@ -36,7 +36,7 @@
           <li class="nav-item">
             <%= link_to 'Log in with Facebook!', '/auth/facebook', class: "nav-link", method: :post%>
           </li>
-      <% else %>
+      <% if logged_in? %>
         <%= link_to "Hi #{current_user.name}!", root_path, class: "navbar-brand" %>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
