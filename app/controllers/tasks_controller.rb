@@ -10,17 +10,21 @@ class TasksController < ApplicationController
   def create
     
     if params[:user_id]
+      @user = current_user
       tps = task_params
-      tps[:comments_attributes]["0"][:user_id] = current_user.id
-
-      @task = current_user.tasks.build(tps)
+      tps[:comments_attributes]["0"][:user_id] = @user.id
+      @task = @user.tasks.build(tps)
+      binding.pry
+      @comment = Comment.new(tps[:comments_attributes]["0"])
+      
+    
 
       if @task.save
         redirect_to user_task_path(@task.user, @task)
       else
 
         flash[:snap] = "That did not work. Try again."
-        redirect_to new_user_task_path(current_user)
+        redirect_to new_user_task_path(@user)
       end
     end
 
@@ -47,8 +51,9 @@ class TasksController < ApplicationController
   end
 
   def update
+    @user = current_user
     tps = task_params
-    tps[:comments_attributes]["0"][:user_id] = current_user.id
+    tps[:comments_attributes]["0"][:user_id] = @user.id
 
     binding.pry
     @user = current_user

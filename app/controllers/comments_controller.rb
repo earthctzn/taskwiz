@@ -4,6 +4,10 @@ class CommentsController < ApplicationController
   end
   
   def create
+    if params[:user_id]
+      @user = current_user
+      binding.pry
+      @comment = @user.comments.new(comment_params)
   end
 
   def index
@@ -16,6 +20,7 @@ class CommentsController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
@@ -25,7 +30,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    
+    self.destroy
+  end
+
+  private
+
+  def comment_params
+    params.require(comment).permit(:content, :user_id, :task_id)
   end
 
 end
