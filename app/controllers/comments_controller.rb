@@ -1,13 +1,21 @@
 class CommentsController < ApplicationController
 
   def new
+    if params[:user_id]
+      @comment = user.comments.build
+    else
+      @comment = Comment.new
+    end
   end
   
   def create
     if params[:user_id]
       @user = current_user
-      binding.pry
+      # binding.pry
       @comment = @user.comments.new(comment_params)
+    else
+      @comment = Comment.create(comment_params)
+    end
   end
 
   def index
@@ -20,7 +28,13 @@ class CommentsController < ApplicationController
   end
 
   def show
-
+    if params[:user_id]
+      @user = User.find(comment_params[:user_id])
+      @task = @user.tasks.find(comment_params[:task_id])
+      @comment = @user.comments.find()
+    else
+      @comment = 
+    end
   end
 
   def edit

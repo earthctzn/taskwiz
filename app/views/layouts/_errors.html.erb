@@ -1,0 +1,8 @@
+<% if @user && @user.errors.any? %>
+	<h2>Please correct these errors:</h2>
+	<ul>
+		<% @user.errors.full_messages.each do |errmsg| %>
+			<li><%= errmsg %></li>
+		<% end %>
+	</ul>
+<% end %>

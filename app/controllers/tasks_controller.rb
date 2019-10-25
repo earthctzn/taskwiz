@@ -14,10 +14,7 @@ class TasksController < ApplicationController
       tps = task_params
       tps[:comments_attributes]["0"][:user_id] = @user.id
       @task = @user.tasks.build(tps)
-      binding.pry
-      @comment = Comment.new(tps[:comments_attributes]["0"])
-      
-    
+  
 
       if @task.save
         redirect_to user_task_path(@task.user, @task)
@@ -44,6 +41,7 @@ class TasksController < ApplicationController
       
       @user = User.find(params[:user_id])
       @task = @user.tasks.find_by(id: params[:id])
+      current_comment
 
     else
       @task = Task.find_by(id: params[:id])
@@ -54,9 +52,6 @@ class TasksController < ApplicationController
     @user = current_user
     tps = task_params
     tps[:comments_attributes]["0"][:user_id] = @user.id
-
-    binding.pry
-    @user = current_user
     @task = @user.tasks.last
 
     if !@task.nil? && @task.update(tps)
@@ -70,7 +65,7 @@ class TasksController < ApplicationController
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
       @task = @user.tasks.find_by(id: params[:id])
-      current_user_comment
+      current_comment
       if !@task
         flash[:error] = "Task not found"
         redirect_to tasks_path
@@ -90,7 +85,7 @@ class TasksController < ApplicationController
     ])
   end
 
-  def current_user_comment
+  def current_comment
     @comment = current_user.comments.last
   end
   

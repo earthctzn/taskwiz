@@ -4,11 +4,14 @@
       <article class="box">
         <header>
         
-            <% if @user && @user.errors.any? %>
-              <% @user.errors.full_messages.each do |errmsg| %>
-                <p><%= errmsg %></p>
-              <% end %>
-            <% end %>
+          <% if @user && @user.errors.any? %>
+						<h2>Please correct these errors:</h2>
+						<ul>
+							<% @user.errors.full_messages.each do |errmsg| %>
+								<li><%= errmsg %></li>
+							<% end %>
+						</ul>
+          <% end %>
 
           <p><%= f.select "admin", raw("<option>Admin?</option><option>True</option><option>False</option>") %></p>
           <p><%= f.text_field :name, :placeholder => "Name" %></p>

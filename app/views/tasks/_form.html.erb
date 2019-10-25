@@ -4,31 +4,30 @@
 
 <%= form_with model: [task.user, task], local: true do |form| %>
   <section id="one" >
-		  <div class="inner">
-			  <article class="box">
-				  <header>
+		<div class="inner">
+			<article class="box">
+				<header>
 
-            <% if @user && @user.errors.any? %>
-              <% @user.errors.full_messages.each do |errmsg| %>
-                <p><%= errmsg %></p>
-              <% end %>
-            <% end %>
+					<% render "layouts/errors", :object => task %>
 
-            <p><%= form.text_field :title, :placeholder => "Title"%></p>
-            <p><%= form.select "status", raw("<option>Please choose a status</option><option>To do</option><option>In Progress</option><option>Awaiting Response</option><option>Done</option>")%></p>
-            <p><%= form.text_field :description, :placeholder => "Description" %></p>
-				  </header>
-				  <div class="content">
-            <%= form.fields_for :comments, task.comments do |comment_form| %>
-              <p><%= comment_form.text_field :content, :placeholder => "Comment" %></p>
-            <% end %>
-				  </div>
-				  <footer>
-					  <%= form.submit  %>
-			    </footer>
-			  </article>
-		  </div>
+          <p><%= form.text_field :title, :placeholder => "Title"%></p>
+          <p><%= form.select "status", raw("<option>Please choose a status</option><option>To do</option><option>In Progress</option><option>Awaiting Response</option><option>Done</option>")%></p>
+          <p><%= form.text_field :description, :placeholder => "Description" %></p>
 
+				</header>
+
+				<div class="content">
+          <%= form.fields_for :comments, task.comments do |comment_form| %>
+            <p><%= comment_form.text_field :content, :placeholder => "Comment" %></p>
+          <% end %>
+				</div>
+
+				<footer>
+					<%= form.submit  %>
+			  </footer>
+
+			</article>
+		</div>
   </section>
 
 <% end %>
