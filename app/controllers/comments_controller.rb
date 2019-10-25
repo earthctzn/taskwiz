@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def new
     if params[:user_id]
-      @comment = user.comments.build
+      @comment = User.comments.build
     else
       @comment = Comment.new
     end
@@ -31,9 +31,9 @@ class CommentsController < ApplicationController
     if params[:user_id]
       @user = User.find(comment_params[:user_id])
       @task = @user.tasks.find(comment_params[:task_id])
-      @comment = @user.comments.find()
+      @comment = @user.comments.find(comment_params)
     else
-      @comment = 
+      @comment = Comment.find_by
     end
   end
 
