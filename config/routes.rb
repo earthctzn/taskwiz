@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   root 'welcome#home'
   
   resources :users do
-    resources :tasks, only: [:new, :edit, :update, :show, :index, :create] do
-      resources :comments, only: [:new, :edit, :update, :create, :destroy]
+    resources :tasks, except: [:destroy] do
+      resources :comments, except: [:index, :show]
     end
   end
 
-  resources :tasks, only: [:new, :edit, :show, :index, :update, :create, :destroy]
+  resources :tasks
   resources :comments
 
   get '/login', to: 'sessions#new', as: "login"
