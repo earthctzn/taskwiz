@@ -19,7 +19,7 @@
 								<% task.comments.each do |comment| %>
 									<p><%= comment.content %> - by: <%= comment.user.name %></p>
 									<% if comment.user == current_user %>
-										<%= link_to "Edit", edit_user_task_comment_path(task.user.id, task.id, comment.id) %> 
+										<%= link_to "Edit", edit_user_task_comment_path(task.user.id, task.id, comment.id) %> |
 										<%= link_to "Delete", user_task_comment_path(task.user.id, task.id, comment.id), :data => {:confirm => "You sure?", :method => "delete"} %>
               		<% end %>
 								<% end %>
@@ -37,5 +37,5 @@
 	<% end %>
 
 <% else %>
-	<p><%= link_to "Woohoo no tasks are due! Click here to create a new one", new_user_task_path(current_user) %></p>	
+	<p><%= link_to "Woohoo no tasks are due! Click here to create a new one", new_user_task_path(current_user.id) %></p>	
 <% end %>	

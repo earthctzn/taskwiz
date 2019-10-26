@@ -1,18 +1,23 @@
 <%= form_tag login_path do  %>
+  <div class="page_title"> Log in below: </div>
   <section id="one" >
     <div class="inner">
       <article class="box">
         <header>
-        <p><h2> Log in below! </h2></p>
+
           <p><%= text_field_tag :name,  "", :placeholder => "Name" %></p>
           <p><%= text_field_tag :email, "", :placeholder => "Email" %></p>
           <p><%= password_field_tag :password, "", :placeholder => "Password" %></p>
           <p><%= password_field_tag :password_confirmation, "", :placeholder => "Confirm Password" %></p>
+
         </header>
+
         <footer>
-        <%= submit_tag  %>
-        <%= button_to "Back", root_path  %>
-      </footer>
+          <%= submit_tag  %>
+        </footer>
+        <div>
+          <%= link_to "Back", root_path  %>
+        </div>
       </article>
     </div>
   </section>

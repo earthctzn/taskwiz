@@ -1,19 +1,30 @@
 <%= form_with model: user, local: true do |f| %>
+
+<div class="page_title"> 
+  That's the stuff! You're almost there...
+</div>
+
+<div class="page_title">
+  <%= render "layouts/errors", :object => user %>
+</div>
+
   <section id="one" >
     <div class="inner">
       <article class="box">
         <header>
-          <%= render "layouts/errors", :object => user %>
 
           <p><%= f.select "admin", raw("<option>Admin?</option><option>True</option><option>False</option>") %></p>
           <p><%= f.text_field :name, :placeholder => "Name" %></p>
           <p><%= f.text_field :email, :placeholder => "Email" %></p>
           <p><%= f.password_field :password, :placeholder => "Password" %></p>
           <p><%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></p>
+
         </header>
+
         <footer>
-        <%= f.submit  %>
-      </footer>
+          <%= f.submit  %>
+        </footer>
+
       </article>
     </div>
   </section>

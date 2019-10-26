@@ -3,16 +3,16 @@
 
 
 <%= form_with model: [task.user, task], local: true do |form| %>
+<div class="page_title"><h1> Create a new task below: </h1></div>
+<div class="page_title"><%= render "layouts/errors", :object => task %></div>
   <section id="one" >
 		<div class="inner">
 			<article class="box">
 				<header>
 
-					<%= render "layouts/errors", :object => task %>
-
           <p><%= form.text_field :title, :placeholder => "Title"%></p>
           <p><%= form.select "status", raw("<option>Please choose a status</option><option>To do</option><option>In Progress</option><option>Awaiting Response</option><option>Done</option>")%></p>
-          <p><%= form.text_field :description, :placeholder => "Description" %></p>
+          <p><%= form.text_area :description, :placeholder => "Description" %></p>
 
 				</header>
 

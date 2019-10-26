@@ -1,4 +1,6 @@
 <%= form_with model:[comment.user, comment], local: true do |form| %>
+<div class="page_title"><h1> New Comment for Task number:  <%= params[:task_id]  %></h1></div>
+<h1></h1>
   <section id="one" >
 		  <div class="inner">
 			  <article class="box">
@@ -7,12 +9,14 @@
 					<%= render "layouts/errors", :object => comment %>
 
             <p><%= form.text_area :content, :placeholder => "Comment"%></p>
+						<%= form.hidden_field :task_id, :value => params[:task_id]  %>
             
 				  </header>
 
 				  <footer>
 					  <%= form.submit  %>
 			    </footer>
+					<div><%= link_to "Back", user_tasks_path(current_user.id)  %></div>
 			  </article>
 		  </div>
 
