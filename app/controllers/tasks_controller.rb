@@ -50,13 +50,13 @@ class TasksController < ApplicationController
 
   def update
     @user = current_user
-    tps = task_params  
+    tps = task_params
     @task = Task.find(params[:id])
 
     if !@task.nil? && @task.update(tps)
       redirect_to tasks_path
     else
-      redirect_to edit_user_task_path(current_user, @task)
+      redirect_to edit_user_task_path(@user, @task)
     end
   end
 

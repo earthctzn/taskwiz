@@ -1,27 +1,32 @@
 class CommentsController < ApplicationController
+  before_action :authenticate
 
   def new
+    binding.pry 
     if params[:user_id]
-      @comment = User.comments.build
+      @task = Task.find(params[:task_id])
+      @user = current_user
+      @comment = @task.comments.new
     else
       @comment = Comment.new
     end
   end
   
   def create
-    if params[:user_id]
+    binding.pry
+    if params[:comment]
       @user = current_user
-      # binding.pry
-      @comment = @user.comments.new(comment_params)
-      @task = Task.find(params[:id])
+      @user.comments.new(comment_params)
+  
       if @comment.save
         flash[:notice] = "Comment successfully created."
-        redirect_to task_path(@task)
+        redirect_to task_path(@task.id)
       end
+      
     else
       @comment = Comment.create(comment_params)
       flash[:notice] = "Comment successfully created."
-      redirect_to task_path(@task)
+      redirect_to task_path(@task.id)
     end
   end
 
@@ -36,15 +41,20 @@ class CommentsController < ApplicationController
 
   def show
     if params[:user_id]
-      @user = User.find(comment_params[:user_id])
-      @task = @user.tasks.find(comment_params[:task_id])
+      @user = User.find(params[:user_id])
+      @task = @user.tasks.find(params[:task_id])
       @comment = @user.comments.find(params[:id])
     else
-      @comment = Comment.find_by
+      @comment = Comment.find_by(id: params[:id])
     end
   end
 
   def edit
+    if params[:user_id]
+      @comment = Comment.find(params[:id])
+    else
+      
+    end
   end
 
   def update

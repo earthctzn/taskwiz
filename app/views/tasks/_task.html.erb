@@ -2,23 +2,29 @@
   <div class="inner">
 	  <article class="box">
 
-		  <header>
-			<%= render "layouts/errors", :object => task %>
+			<header>
+				<%= render "layouts/errors", :object => task %>
+        <h2><%= link_to task.title, task_path(task)%> | Status: <%= task.status %> | Task Owner: <%= task.user.name %></h2>
+        <p> Description: <%= task.description%></p>
+			</header>
+						
+			<div class="content">
+        <p><%= link_to "Comments", task_path(task)%> - <%= task.comments.count %>	</p>
+				<h3>Latest Comments:</h3>
+				<% if task.comments.any? %>
+					<% task.comments.each do |comment| %>
+						<p><%= comment.content %> - by: <%= comment.user.name %></p>
+						<% if comment.user == current_user %>
+							<%= link_to "Edit", edit_user_task_comment_path(task.user.id, task.id, comment.id) %> 
+							<%= link_to "Delete", user_task_comment_path(task.user.id, task.id, comment.id), :data => {:confirm => "You sure?", :method => "delete"} %>
+            <% end %>
+					<% end %>
+				<% end %>
+			</div>
 
-			  <h3><%= link_to task.title, task_path(task)%> | Status: <%= task.status %> | Owner: <%= task.user.name %></h3>
-			  <p><%= task.description %></p>
-
-		  </header>
-
-		  <div class="content">
-			  <% task.comments.each do |comment| %>
-          <p><%= comment.content %></p>
-        <% end %>
-		  </div>
-
-		  <footer>
-			  <p><%= link_to "My Tasks", user_tasks_path(task.user) %> | <%= link_to "New Task", new_user_task_path(task.user) %> | <%= link_to "Edit Task", edit_user_task_path(task.user, task) %></p>
-		  </footer>
+			<footer>
+				<%= link_to "Add Comment", new_user_comment_path(current_user)  %>
+			</footer>
       
 	  </article>
   </div>
