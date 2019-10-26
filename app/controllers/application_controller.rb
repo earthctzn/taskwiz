@@ -4,20 +4,20 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   def logged_in?
-    current_user
+    current_user 
   end
 
   def authenticate
     redirect_to '/' if !logged_in?
   end
-
-  def redirect_admin
-    #need to change this or create an actual admin path 
-    redirect_to users_path if !current_user.admin
-  end
   
   def log_in(user)
     session[:user_id] = user.id
+  end
+
+  def logout
+    session.clear
+    @current_user = nil
   end
 
   private

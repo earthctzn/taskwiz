@@ -1,7 +1,3 @@
-
-
-
-
 <%= form_with model: [task.user, task], local: true do |form| %>
   <section id="one" >
 		<div class="inner">
@@ -15,12 +11,6 @@
           <p><%= form.text_field :description, :placeholder => "Description" %></p>
 
 				</header>
-
-				<div class="content">
-          <%= form.fields_for :comments, task.comments do |comment_form| %>
-            <p><%= comment_form.text_area :content, :placeholder => "Comment" %></p>
-          <% end %>
-				</div>
 
 				<footer>
 					<%= form.submit  %>

@@ -3,14 +3,7 @@
 	  <article class="box">
 
 		  <header>
-        <% if @user && @user.errors.any? %>
-					<h2>Please correct these errors:</h2>
-					<ul>
-						<% @user.errors.full_messages.each do |errmsg| %>
-							<li><%= errmsg %></li>
-						<% end %>
-					</ul>
-        <% end %>
+			<%= render "layouts/errors", :object => task %>
 
 			  <h3><%= link_to task.title, task_path(task)%> | Status: <%= task.status %> | Owner: <%= task.user.name %></h3>
 			  <p><%= task.description %></p>

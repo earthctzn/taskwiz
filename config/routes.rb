@@ -5,14 +5,15 @@ Rails.application.routes.draw do
   root 'welcome#home'
   
   resources :users do
-    resources :tasks, only: [:new, :edit, :update, :show, :index, :create]
-    resources :comments, only: [:new, :edit, :update, :show, :index, :create, :delete]
+    resources :tasks, only: [:new, :edit, :update, :show, :index, :create] do
+      resources :comments
+    end
   end
 
   resources :tasks, only: [:new, :edit, :show, :index, :update, :create, :delete]
-  resources :comments, only: [:new, :edit, :show, :index, :update, :create, :delete]
+  resources :comments
 
-  get '/login', to: 'sessions#new'
+  get '/login', to: 'sessions#new', as: "login"
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
 

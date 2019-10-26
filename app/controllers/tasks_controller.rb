@@ -13,8 +13,8 @@ class TasksController < ApplicationController
       @user = current_user
       tps = task_params
       tps[:comments_attributes]["0"][:user_id] = @user.id
-      @task = @user.tasks.build(tps)
-  
+      @task = @user.tasks.new(tps)
+
 
       if @task.save
         redirect_to user_task_path(@task.user, @task)
@@ -50,9 +50,8 @@ class TasksController < ApplicationController
 
   def update
     @user = current_user
-    tps = task_params
-    tps[:comments_attributes]["0"][:user_id] = @user.id
-    @task = @user.tasks.last
+    tps = task_params  
+    @task = Task.find(params[:id])
 
     if !@task.nil? && @task.update(tps)
       redirect_to tasks_path
@@ -88,6 +87,7 @@ class TasksController < ApplicationController
   def current_comment
     @comment = current_user.comments.last
   end
+
   
 end
 
