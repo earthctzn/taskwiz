@@ -1,0 +1,22 @@
+
+
+<section id="post" class="wrapper">
+	<div class="inner">
+		<article class="box">
+			<header>
+				<h2><%= link_to @comment.task.title, task_path(@task.id)  %> - by <%= @task.user.name %></h2>
+				<p><%= @task.description %></p>
+			</header>
+			<div class="content">
+				<p><%= @comment.content  %></p>
+
+      </div>
+			<footer>
+				<% if @comment.user == current_user %>
+					<%= link_to "Edit", edit_task_comment_path(@task.id, @comment.id) %> |
+					<%= link_to "Delete", user_comment_path(@comment.user.id, @comment.id), :data => {:confirm => "You sure?", :method => "delete"} %>
+        <% end %>
+			</footer>
+		</article>
+	</div>
+</section>

@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :comments, except: [:index, :show]
   end
 
-  resources :tasks, only: [:destroy] do
-    resources :comments, except: [:index, :show]
+  resources :tasks, only: [:show, :index, :destroy] do
+    resources :comments, except: [:index]
   end
   resources :comments, only: [:index, :show]
 

@@ -1,7 +1,7 @@
 <%= form_with model: [task.user, task], local: true do |form| %>
 <div class="page_title"> Editing Task# <%= params[:task_id]  %></div>
 <div class="page_title"><%= render "layouts/errors", :object => task %></div>
-  <section id="one" >
+  <section id="one" class="fields_with_errors" >
 		<div class="inner">
 			<article class="box">
 				<header>

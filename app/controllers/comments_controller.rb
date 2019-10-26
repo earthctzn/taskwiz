@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_action :authenticate
 
   def new
-    if params[:user_id]
+
+    if params[:user_id] || params[:task_id]
       @task = Task.find(params[:task_id])
       @user = current_user
       @comment = @task.comments.new
@@ -12,20 +13,21 @@ class CommentsController < ApplicationController
   end
   
   def create
-    binding.pry
+   
     if params[:comment]
       @user = current_user
-      @user.comments.new(comment_params)
-  
-      if @comment.save
+      @task = Task.find(params[:task_id])
+      @new_comment = @user.comments.new(comment_params)
+      
+      if @new_comment.save
         flash[:notice] = "Comment successfully created."
-        redirect_to task_path(@task.id)
+        redirect_to task_comment_path(@task.id, @new_comment.id)
       end
 
     else
       @comment = Comment.create(comment_params)
       flash[:notice] = "Comment successfully created."
-      redirect_to task_path(@task.id)
+      redirect_to task_comment_path(@task.id, @comment.id)
     end
   end
 
@@ -39,9 +41,10 @@ class CommentsController < ApplicationController
   end
 
   def show
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-      @task = @user.tasks.find(params[:task_id])
+
+    if params[:user_id] || params[:task_id]
+      @user = current_user
+      @task = Task.find(params[:task_id])
       @comment = @user.comments.find(params[:id])
     else
       @comment = Comment.find_by(id: params[:id])
@@ -49,14 +52,32 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    if params[:user_id]
+    
+    if params[:user_id] || params[:task_id]
       @comment = Comment.find(params[:id])
+      @task = Task.find(params[:task_id])
+      @user = current_user
     else
-      
+      @comment = Comment.find(params[:id])
     end
   end
 
   def update
+    binding.pry
+    if params[:user_id] || params[:task_id]
+      @comment = Comment.find(params[:id])
+      @task = Task.find(params[:task_id])
+    
+      if @comment.update(comment_params)
+        flash[:notice] = "Comment successfully updated"
+        redirect_to task_comment_path(@task.id, @comment.id)
+      else
+        flash[:warning] = "That didn't work. Please try again."
+        redirect_to task_comment_path(@task.id, @comment.id)
+      end
+    else
+      @comment = Comment.find(params[:id])
+    end
   end
 
   def destroy

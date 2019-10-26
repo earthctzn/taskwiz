@@ -15,15 +15,15 @@
 					<% task.comments.each do |comment| %>
 						<p><%= comment.content %> - by: <%= comment.user.name %></p>
 						<% if comment.user == current_user %>
-							<%= link_to "Edit", edit_user_task_comment_path(task.user.id, task.id, comment.id) %> 
-							<%= link_to "Delete", user_task_comment_path(task.user.id, task.id, comment.id), :data => {:confirm => "You sure?", :method => "delete"} %>
+							<%= link_to "Edit", edit_task_comment_path(task.id, comment.id) %> |
+							<%= link_to "Delete", user_comment_path(comment.user.id, comment.id), :data => {:confirm => "You sure?", :method => "delete"} %>
             <% end %>
 					<% end %>
 				<% end %>
 			</div>
 
 			<footer>
-				<%= link_to "Add Comment", new_user_task_comment_path(current_user.id, task.id)  %>
+				<%= link_to "Add Comment", new_task_comment_path(task.id)  %>
 			</footer>
       
 	  </article>
