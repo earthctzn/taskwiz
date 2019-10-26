@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_action :authenticate
 
   def new
-    binding.pry 
     if params[:user_id]
       @task = Task.find(params[:task_id])
       @user = current_user
@@ -22,7 +21,7 @@ class CommentsController < ApplicationController
         flash[:notice] = "Comment successfully created."
         redirect_to task_path(@task.id)
       end
-      
+
     else
       @comment = Comment.create(comment_params)
       flash[:notice] = "Comment successfully created."

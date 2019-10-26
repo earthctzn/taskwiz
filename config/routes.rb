@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   
   resources :users do
     resources :tasks, only: [:new, :edit, :update, :show, :index, :create] do
-      resources :comments
+      resources :comments, only: [:new, :edit, :update, :create, :destroy]
     end
   end
 
-  resources :tasks, only: [:new, :edit, :show, :index, :update, :create, :delete]
+  resources :tasks, only: [:new, :edit, :show, :index, :update, :create, :destroy]
   resources :comments
 
   get '/login', to: 'sessions#new', as: "login"
