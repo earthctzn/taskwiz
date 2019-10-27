@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate, except: [:new, :create]
 
   def new
-    @user = User.new
   end
 
   def create
@@ -21,15 +20,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    get_user
   end
 
   def edit
-    @user = current_user
+    get_user
   end
 
   def update
-    @user = User.find_by(id: params[:id])
+    get_user
     @user.update(user_params)
     if @user.valid?
       redirect_to users_path
@@ -45,4 +44,9 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
+
+  def get_user
+    @user = User.find_by(id: params[:id])
+  end
+
 end

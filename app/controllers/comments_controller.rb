@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
    
     if params[:comment]
       @user = current_user
-      @task = Task.find(params[:task_id])
+      @task = Task.find(params[:task_id]) 
       @new_comment = @user.comments.new(comment_params)
       
       if @new_comment.save
