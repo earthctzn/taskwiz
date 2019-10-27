@@ -1,42 +1,5 @@
+<section class="fields_with_errors">
+  <div class="page_title"><h1> All Tasks: </h1></div>  
+</section>
 
-<% if !@tasks.nil? %>
-
-	<% @tasks.each do |task| %>
-		<% if !task.title.nil? %>
-		  <section class ="index_show">
-		  	<div class="inner">
-			  	<article class="box">
-
-				  	<header>
-            	<h2><%= link_to task.title, task_path(task)%> | Status: <%= task.status %> | Task Owner: <%= task.user.name %></h2>
-            	<p> Description: <%= task.description%></p>
-				  	</header>
-						
-				  	<div class="content">
-            	<p><%= link_to "Comments", task_path(task)%> - <%= task.comments.count %>	</p>
-							<h3>Latest Comments:</h3>
-							<% if task.comments.any? %>
-								<% task.comments.each do |comment| %>
-									<p><%= comment.content %> - by: <%= comment.user.name %></p>
-									<% if comment.user == current_user %>
-									<%= link_to "Edit", edit_task_comment_path(task.id, comment.id) %> |
-									<%= link_to "Delete", user_comment_path(comment.user.id, comment.id), :data => {:confirm => "You sure?", :method => "delete"} %>
-              		<% end %>
-								<% end %>
-							<% end %>
-				  	</div>
-
-				  	<footer>
-							<%= link_to "Add Comment", new_task_comment_path(task.id)  %>
-			  		</footer>
-						
-			  	</article>
-					
-		  	</div>
-  		</section>
-		<% end %>
-	<% end %>
-
-<% else %>
-	<p><%= link_to "Woohoo no tasks are due! Click here to create a new one", new_user_task_path(current_user.id) %></p>	
-<% end %>	
+<%= render "task_index" %>

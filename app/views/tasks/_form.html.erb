@@ -1,30 +1,30 @@
+<section class="fields_with_errors">
+	<%= form_with model: [task.user, task], local: true do |form| %>
+	<div class="page_title"><h1> Create a new task below: </h1></div>
+	<div class="page_title"><%= render "layouts/errors", :object => task %></div>
+		<section id="one" >
+			<div class="inner">
+				<article class="box">
+					<header>
 
-<%= form_with model: [task.user, task], local: true do |form| %>
-<div class="page_title"><h1> Create a new task below: </h1></div>
-<div class="page_title"><%= render "layouts/errors", :object => task %></div>
-  <section id="one" >
-		<div class="inner">
-			<article class="box">
-				<header>
+						<p><%= form.text_field :title, :placeholder => "Title"%></p>
+						<p><%= form.select "status", raw("<option>Please choose a status</option><option>To do</option><option>In Progress</option><option>Awaiting Response</option><option>Done</option>")%></p>
+						<p><%= form.text_area :description, :placeholder => "Description" %></p>
 
-          <p><%= form.text_field :title, :placeholder => "Title"%></p>
-          <p><%= form.select "status", raw("<option>Please choose a status</option><option>To do</option><option>In Progress</option><option>Awaiting Response</option><option>Done</option>")%></p>
-          <p><%= form.text_area :description, :placeholder => "Description" %></p>
+					</header>
 
-				</header>
+					<div class="content">
+						<%= form.fields_for :comments, task.comments do |comment_form| %>
+							<p><%= comment_form.text_area :content, :placeholder => "Comment" %></p>
+						<% end %>
+					</div>
 
-				<div class="content">
-          <%= form.fields_for :comments, task.comments do |comment_form| %>
-            <p><%= comment_form.text_area :content, :placeholder => "Comment" %></p>
-          <% end %>
-				</div>
+					<footer>
+						<%= form.submit  %>
+					</footer>
 
-				<footer>
-					<%= form.submit  %>
-			  </footer>
-
-			</article>
-		</div>
-  </section>
-
-<% end %>
+				</article>
+			</div>
+		</section>
+</section>
+	<% end %>

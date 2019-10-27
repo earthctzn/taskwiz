@@ -63,7 +63,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    binding.pry
+  
     if params[:user_id] || params[:task_id]
       @comment = Comment.find(params[:id])
       @task = Task.find(params[:task_id])

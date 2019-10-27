@@ -1,24 +1,32 @@
-<%= form_tag login_path do  %>
-  <div class="page_title"> <h1>Log in below: </h1></div>
-  <section id="one">
-    <div class="inner">
-      <article class="box">
-        <header>
+<section class="fields_with_errors">
+  <%= form_tag login_path do  %>
 
-          <p><%= text_field_tag :name,  "", :placeholder => "Name" %></p>
-          <p><%= text_field_tag :email, "", :placeholder => "Email" %></p>
-          <p><%= password_field_tag :password, "", :placeholder => "Password" %></p>
-          <p><%= password_field_tag :password_confirmation, "", :placeholder => "Confirm Password" %></p>
-
-        </header>
-
-        <footer>
-          <%= submit_tag  %>
-        </footer>
-        <div>
-          <%= link_to "Back", root_path  %>
-        </div>
-      </article>
+    <div class="page_title"> 
+      <h1>Log in below: </h1>
     </div>
-  </section>
-<% end %>
+
+    <div class="page_title">
+      <%= render "layouts/errors", :object => session %>
+    </div>
+
+    <section id="one">
+      <div class="inner">
+        <article class="box">
+          <header>
+
+            <p><%= text_field_tag :email, "", :placeholder => "Email" %></p>
+            <p><%= password_field_tag :password, "", :placeholder => "Password" %></p>
+
+          </header>
+
+          <footer>
+            <%= submit_tag  %>
+          </footer>
+          <div>
+            <%= link_to "Back", root_path  %>
+          </div>
+        </article>
+      </div>
+    </section>
+</section>
+  <% end %>

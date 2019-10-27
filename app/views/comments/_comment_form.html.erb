@@ -1,24 +1,28 @@
+<section class="fields_with_errors">
 <%= form_with model:[comment.task, comment], local: true do |form| %>
-<div class="page_title"><h1> Comment for Task number:  <%= params[:task_id]  %></h1></div>
+
+	<div class="page_title">
+		<h1> Comment for Task number:  <%= params[:task_id]  %></h1>
+	</div>
+
   <section id="one" >
-		  <div class="inner">
-			  <article class="box">
-				  <header>
+		<div class="inner">
+			<article class="box">
+				<header>
           
-					<%= render "layouts/errors", :object => comment %>
+				<%= render "layouts/errors", :object => comment %>
 
-            <p><%= form.text_area :content, :placeholder => "Comment"%></p>
-						<%= form.hidden_field :task_id, :value => params[:task_id]  %>
+          <p><%= form.text_area :content, :placeholder => "Comment"%></p>
+					<%= form.hidden_field :task_id, :value => params[:task_id]  %>
             
-				  </header>
+				</header>
 
-				  <footer>
-					  <%= form.submit  %>
-			    </footer>
-					<div><%= link_to "Back", user_tasks_path(current_user.id)  %></div>
-			  </article>
-		  </div>
-
+				<footer>
+					<%= form.submit  %>
+			  </footer>
+				<div><%= link_to "Back", user_tasks_path(current_user.id)  %></div>
+			</article>
+		</div>
   </section>
-
+</section>
 <% end %>
