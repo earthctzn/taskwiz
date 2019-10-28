@@ -1,5 +1,9 @@
 <section class="fields_with_errors">
-  <div class="page_title"><h1> All Tasks: </h1></div>  
-</section>
+  <% if !params[:user_id] %>
+    <div class="page_title"><h1> All Tasks: </h1></div>
+  <% else %>
+    <div class="page_title"><h1>My Tasks:</h1></div>
+  <% end %>
 
+</section>
 <%= render "task_index" %>
