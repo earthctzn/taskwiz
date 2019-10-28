@@ -2,17 +2,26 @@ class UsersController < ApplicationController
   before_action :authenticate, except: [:new, :create]
 
   def new
+    @user = User.new
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      log_in(@user)
-      redirect_to new_user_task_path(@user)
+    if User.find_by(email: user_params[:email])
+      flash[:notice] = "Looks like you already have an account. Please log in to continue."
+      redirect_to login_path
     else
-      flash[:snap] = "Looks like there was an issue with your signup..."
-      render 'new'
+    @user = User.new(user_params)
+
+      if @user.save
+        log_in(@user)
+        flash[:yay] = "Hey now, welcome #{@user.name}!"
+        redirect_to new_user_task_path(@user)
+      else
+        flash[:snap] = "Looks like there was an issue with your signup..."
+        redirect_to new_user_path
+      end
     end
+
   end
 
   def index

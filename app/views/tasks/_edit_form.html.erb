@@ -8,6 +8,10 @@
 		<div class="page_title">
 			<%= render "layouts/errors", :object => task %>
 		</div>
+
+		<div class="alert">
+			<h1><%= render "layouts/flash", :object => task %></h1>
+		</div>
 		
 		<section id="one" >
 			<div class="inner">

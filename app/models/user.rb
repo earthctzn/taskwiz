@@ -20,4 +20,5 @@ class User < ApplicationRecord
       u.password_confirmation = @upass
     end
   end
+  
 end

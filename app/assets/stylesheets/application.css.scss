@@ -3620,6 +3620,18 @@
 	text-transform: none;
 }
 
+/* Notices */
+
+.alert h1 h2 h3 p {
+	font-size: 3em;
+	line-height: 1.1;
+	font-family: "Lobster", cursive;
+	margin-bottom: .25em;
+	color: rgba(218, 79, 79, 0.75);
+	text-shadow: -2px -2px 0 rgba(0, 0, 0, 0.125);
+	text-transform: none;
+}
+
 /* Banner */
 
 

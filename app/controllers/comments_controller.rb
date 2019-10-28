@@ -16,12 +16,17 @@ class CommentsController < ApplicationController
    
     if params[:comment]
       @user = current_user
-      @task = Task.find(params[:task_id]) 
+      @task = Task.find(params[:task_id])
       @new_comment = @user.comments.new(comment_params)
+      @new_comment.task = @task
       
       if @new_comment.save
         flash[:notice] = "Comment successfully created."
         redirect_to task_comment_path(@task.id, @new_comment.id)
+      else
+      
+        flash[:notice] = "That didn't work. Try it again."
+        redirect_to task_path(@task.id)
       end
 
     else
