@@ -1,17 +1,17 @@
 <section class="fields_with_errors">
 	<%= form_with model: [task.user, task], local: true do |form| %>
 
-	<div class="page_title">
-		<h1> Create a new task below: </h1>
-	</div>
+		<div class="page_title">
+			<h1> Create a new task below: </h1>
+		</div>
 
-	<div class="page_title">
-		<h1><%= render "layouts/errors", :object => task %></h1>
-	</div>
+		<div class="page_title">
+			<h1><%= render "layouts/errors", :object => task %></h1>
+		</div>
 
-	<div class="alert">
-		<h1><%= render "layouts/flash", :object => task %></h1>
-	</div>
+		<div class="alert">
+			<h1><%= render "layouts/flash", :object => task %></h1>
+		</div>
 
 		<section id="one" >
 			<div class="inner">

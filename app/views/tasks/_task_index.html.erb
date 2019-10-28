@@ -21,7 +21,10 @@
 									<p><%= comment.content %> - by: <%= comment.user.name %></p>
 									<% if comment.user == current_user %>
 									<%= link_to "Edit Comment", edit_task_comment_path(task.id, comment.id) %> |
-									<%= link_to "Delete Comment", user_comment_path(comment.user.id, comment.id), :data => {:confirm => "You sure?", :method => "delete"} %>
+									<%= link_to "Delete Comment", user_comment_path(comment.user.id, comment.id), :data => {:confirm => "You sure?", :method => "delete"} %> |
+										<% if task.user == current_user %>
+											<%= link_to "Edit Task", edit_user_task_path(task.user, task.id) %>
+										<% end %>
               		<% end %>
 								<% end %>
 							<% end %>
