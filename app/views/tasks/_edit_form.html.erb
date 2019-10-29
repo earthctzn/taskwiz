@@ -1,26 +1,26 @@
-<section class="fields_with_errors">	
+<section class="main_view">	
 	<%= form_with model: [task.user, task], local: true do |form| %>
 
-		<div class="page_title"> 
-			<h1>Editing Task# <%= task.id %></h1>
-		</div>
-
-		<div class="page_title">
-			<%= render "layouts/errors", :object => task %>
-		</div>
-
-		<div class="alert">
-			<h1><%= render "layouts/flash", :object => task %></h1>
-		</div>
+	<div class="page_title"> 
+		<h1>Editing Task# <%= task.id %></h1>
+	</div>
 		
+  <div class="page_title">
+    <%= render "layouts/errors", :user => task %>
+  </div>
+
+  <div class="alert">
+    <h1><%= render "layouts/flash" %></h1>
+  </div>
+
 		<section id="one" >
 			<div class="inner">
 				<article class="box">
 					<header>
 
-						<p><%= form.text_field :title, :placeholder => "Title"%></p>
+						<p><%= form.text_field :title, class: "fields_with_errors", :placeholder => "Title"%></p>
 						<p><%= form.select "status", raw("<option>Please choose a status</option><option>To do</option><option>In Progress</option><option>Awaiting Response</option><option>Done</option>")%></p>
-						<p><%= form.text_area :description, :placeholder => "Description" %></p>
+						<p><%= form.text_area :description, class: "fields_with_errors", :placeholder => "Description" %></p>
 
 					</header>
 

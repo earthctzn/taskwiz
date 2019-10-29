@@ -1,4 +1,4 @@
-<section class="fields_with_errors">
+<section class="main_view">
   <%= form_with model: user, local: true do |f| %>
 
   <div class="page_title"> 
@@ -6,11 +6,11 @@
   </div>
 
   <div class="page_title">
-    <%= render "layouts/errors", :object => user %>
+    <%= render "layouts/errors", :user => user %>
   </div>
 
   <div class="alert">
-    <h1><%= render "layouts/flash", :object => user %></h1>
+    <h1><%= render "layouts/flash" %></h1>
   </div>
 
     <section id="one" >
@@ -18,11 +18,10 @@
         <article class="box">
           <header>
 
-            <p><%= f.select "admin", raw("<option>Admin?</option><option>True</option><option>False</option>") %></p>
-            <p><%= f.text_field :name, :placeholder => "Name" %></p>
-            <p><%= f.text_field :email, :placeholder => "Email" %></p>
-            <p><%= f.password_field :password, :placeholder => "Password" %></p>
-            <p><%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></p>
+            <p><%= f.text_field :name, class: "fields_with_errors", :placeholder => "Name" %></p>
+            <p><%= f.text_field :email, class: "fields_with_errors", :placeholder => "Email" %></p>
+            <p><%= f.password_field :password, class: "fields_with_errors", :placeholder => "Password" %></p>
+            <p><%= f.password_field :password_confirmation, class: "fields_with_errors", :placeholder => "Confirm Password" %></p>
 
           </header>
 

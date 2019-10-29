@@ -1,11 +1,10 @@
-<section class="fields_with_errors">
+<section class="main_view">
 
 	<section id="one" >
 		<div class="inner">
 			<article class="box">
 
 				<header>
-					<%= render "layouts/errors", :object => task %>
 					<h2><%= link_to task.title, task_path(task)%> | Status: <%= task.status %> | Task Owner: <%= task.user.name %></h2>
 					<h3> Description: </h3><p><%= task.description%></p>
 				</header>
@@ -16,7 +15,6 @@
 					<% if task.comments.any? %>
 						<% task.comments.each do |comment| %>
 							<p><%= comment.content %> - by: <%= comment.user.name %></p>
-							<%= render "layouts/flash", :object => task %>
 							<% if comment.user == current_user %>
 								<%= link_to "Edit Comment", edit_task_comment_path(task.id, comment.id) %> |
 								<%= link_to "Delete Comment", user_comment_path(comment.user.id, comment.id), :data => {:confirm => "You sure?", :method => "delete"} %> | 

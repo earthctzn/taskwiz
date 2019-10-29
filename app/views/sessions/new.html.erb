@@ -1,16 +1,12 @@
-<section class="fields_with_errors">
+<section class="main_view">
   <%= form_tag login_path do  %>
 
     <div class="page_title"> 
       <h1>Log in below: </h1>
     </div>
 
-    <div class="page_title">
-      <%= render "layouts/errors", :object => session %>
-    </div>
-
     <div class="alert">
-      <h1><%= render "layouts/flash", :object => session %></h1>
+      <h1><%= render "layouts/flash"%></h1>
     </div>
 
     <section id="one">
@@ -18,8 +14,8 @@
         <article class="box">
           <header>
 
-            <p><%= text_field_tag :email, "", :placeholder => "Email" %></p>
-            <p><%= password_field_tag :password, "", :placeholder => "Password" %></p>
+            <p><%= text_field_tag :email, "", class: "fields_with_errors", :placeholder => "Email" %></p>
+            <p><%= password_field_tag :password, "", class: "fields_with_errors", :placeholder => "Password" %></p>
 
           </header>
 

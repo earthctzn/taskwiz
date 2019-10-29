@@ -19,9 +19,7 @@ class TasksController < ApplicationController
       if @task.save
         redirect_to user_task_path(@task.user, @task)
       else
-
-        flash[:snap] = "That did not work. Try again."
-        redirect_to new_user_task_path(@user)
+        render "new"
       end
     end
 
@@ -56,7 +54,7 @@ class TasksController < ApplicationController
     if !@task.nil? && @task.update(tps)
       redirect_to tasks_path
     else
-      redirect_to edit_user_task_path(@user, @task)
+      render "edit"
     end
   end
 
