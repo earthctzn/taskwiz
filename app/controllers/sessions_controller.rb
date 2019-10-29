@@ -6,18 +6,14 @@ class SessionsController < ApplicationController
   
   def create
 
-    if @user = User.find_by(email: params[:email])
-      if @user && @user.authenticate(params[:password])
-        log_in(@user)
-        flash[:yay] = "Hey now, welcome #{@user.name}!"
-        redirect_to new_user_task_path(current_user)
-      else
-        flash[:snap] = "Looks like there was an issue with your login..."
-        redirect_to login_path
-      end
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      log_in(@user)
+      flash[:yay] = "Hey now, welcome #{@user.name}!"
+      redirect_to new_user_task_path(current_user)
     else
-        flash[:snap] = "Looks like there was an issue with your login..."
-        redirect_to login_path
+      flash[:snap] = "Looks like there was an issue with your login..."
+      render 'sessions/new'
     end
   
  
@@ -31,7 +27,7 @@ class SessionsController < ApplicationController
       redirect_to new_user_task_path(current_user)
     else
       flash[:snap] = "Looks like there was an issue with your login..."
-      redirect_to root_path
+      render "welcome/home"
     end
 
   end

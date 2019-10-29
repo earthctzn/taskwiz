@@ -6,20 +6,21 @@ class UsersController < ApplicationController
   end
 
   def create
+    
     if User.find_by(email: user_params[:email])
       flash[:notice] = "Looks like you already have an account. Please log in to continue."
-      redirect_to login_path
+      render 'sessions/new'
     else
-    @user = User.new(user_params)
+     @user = User.new(user_params)
 
       if @user.save
         log_in(@user)
         flash[:yay] = "Hey now, welcome #{@user.name}!"
-        redirect_to new_user_task_path(@user)
+        render "tasks/new"
       else
-        flash[:snap] = "Looks like there was an issue with your signup..."
-        redirect_to new_user_path
+        render "new"
       end
+
     end
 
   end
