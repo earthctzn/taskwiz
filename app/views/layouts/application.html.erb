@@ -41,6 +41,21 @@
           <li class="nav-item">
             <%= link_to "My Tasks", user_tasks_path(current_user), class: "nav-link" %>
           </li>
+          <li class="nav-item">
+            <p class= "nav-link" > To Do: <%= current_user.tasks.todo.count %></p>
+          </li>
+          <li class="nav-item">
+            <p class= "nav-link" > In Progress: <%= current_user.tasks.in_prog.count %></p>
+          </li>
+          <li class="nav-item">
+            <p class= "nav-link" > Awaiting Reply: <%= current_user.tasks.awaiting.count %></p>
+          </li>
+          <li class="nav-item">
+            <p class= "nav-link" > Done: <%= current_user.tasks.done.count %></p>
+          </li>
+          <li class="nav-item">
+            <p class= "nav-link" > Completed Today: <%= current_user.tasks.done_today.count %></p>
+          </li>
         </ul>
 
       <% else %>
