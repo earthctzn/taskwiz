@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :tasks, only: [:show, :index, :destroy] do
     resources :comments, except: [:index]
   end
-  resources :comments, only: [:index, :show]
+ 
 
   get '/login', to: 'sessions#new', as: "login"
   post '/login', to: 'sessions#create'
