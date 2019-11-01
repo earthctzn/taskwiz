@@ -1,4 +1,4 @@
-<section class="fields_with_errors">
+<section class="main_view">
 <%= form_with model:[comment.task, comment], local: true do |form| %>
 
 	<div class="page_title">
@@ -6,7 +6,7 @@
 	</div>
 
 	<div class="page_title">
-    <h1><%= render "layouts/errors", :comment => comment %></h1>
+    <h1><%= render "layouts/errors", :user => comment %></h1>
   </div>
 
 	<div class="alert">
@@ -19,8 +19,7 @@
 				<header>
 
           <p><%= form.text_area :content, :placeholder => "Comment"%></p>
-					
-            
+					  
 				</header>
 
 				<footer>
