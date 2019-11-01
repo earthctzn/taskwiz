@@ -9,14 +9,14 @@ class UsersController < ApplicationController
     
     if User.find_by(email: user_params[:email])
       flash[:notice] = "Looks like you already have an account. Please log in to continue."
-      render 'sessions/new'
+      redirect_to login_path
     else
      @user = User.new(user_params)
-
+    
       if @user.save
         log_in(@user)
         flash[:yay] = "Hey now, welcome #{@user.name}!"
-        render "tasks/new"
+        redirect_to new_user_task_path(@user)
       else
         render "new"
       end
