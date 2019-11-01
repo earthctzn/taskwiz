@@ -68,7 +68,6 @@ class CommentsController < ApplicationController
   end
 
   def update
-  
     if params[:user_id] || params[:task_id]
       @comment = Comment.find(params[:id])
       @task = Task.find(params[:task_id])
@@ -80,6 +79,7 @@ class CommentsController < ApplicationController
         flash[:warning] = "That didn't work. Please try again."
         redirect_to task_comment_path(@task.id, @comment.id)
       end
+
     else
       @comment = Comment.find(params[:id])
     end
