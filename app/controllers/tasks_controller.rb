@@ -29,7 +29,6 @@ class TasksController < ApplicationController
     if params[:user_id]
       @user = User.find(params[:user_id])
       @tasks = @user.tasks.select{|t| t.status != "Done"}
-
     else
       @tasks = Task.all
     end

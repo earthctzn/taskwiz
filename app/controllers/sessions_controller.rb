@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 
   def fbauth
     user = User.from_facebook(auth)
-    if user.save
+    if user
       flash[:yay] = "Hey now, welcome #{user.name}!"
       log_in(user)
       redirect_to new_user_task_path(current_user)
