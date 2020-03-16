@@ -1,4 +1,4 @@
-# TravelTracker
+# TaskWiz
 
 Welcome and thank you for using TaskWiz!
 
