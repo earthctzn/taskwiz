@@ -4,7 +4,7 @@ Welcome and thank you for using TaskWiz!
 
 ## Getting Started
 
-To run this webap locally, you will need to fork [the repo](https://github.com/earthctzn/TaskWiz) 
+To run this webapp locally, you will need to fork [the repo](https://github.com/earthctzn/TaskWiz) 
 Once you have it downloaded and opened in a text editor like VSCode or Atom, you will need to install all the necessary gems to run TaskWiz.
 
 To do so run:
