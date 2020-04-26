@@ -19,18 +19,18 @@ class SessionsController < ApplicationController
  
   end
 
-  # def fbauth
-  #   user = User.from_facebook(auth)
-  #   if user
-  #     flash[:yay] = "Hey now, welcome #{user.name}!"
-  #     log_in(user)
-  #     redirect_to new_user_task_path(current_user)
-  #   else
-  #     flash[:snap] = "Looks like there was an issue with your login..."
-  #     render "welcome/home"
-  #   end
+  def fbauth
+    user = User.from_facebook(auth)
+    if user
+      flash[:yay] = "Hey now, welcome #{user.name}!"
+      log_in(user)
+      redirect_to new_user_task_path(current_user)
+    else
+      flash[:snap] = "Looks like there was an issue with your login..."
+      render "welcome/home"
+    end
 
-  # end
+  end
   
 
   def destroy
@@ -38,15 +38,15 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  # private
+  private
 
-  # def auth
-  #   request.env['omniauth.auth']
-  # end
+  def auth
+    request.env['omniauth.auth']
+  end
   
-  # def session_params
-  #   params.permit(:name, :email, :password, :password_confirmation, :admin, :uid)
-  # end
+  def session_params
+    params.permit(:name, :email, :password, :password_confirmation, :admin, :uid)
+  end
 
 
 
