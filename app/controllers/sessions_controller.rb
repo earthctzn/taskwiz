@@ -19,18 +19,18 @@ class SessionsController < ApplicationController
  
   end
 
-  def fbauth
-    user = User.from_facebook(auth)
-    if user
-      flash[:yay] = "Hey now, welcome #{user.name}!"
-      log_in(user)
-      redirect_to new_user_task_path(current_user)
-    else
-      flash[:snap] = "Looks like there was an issue with your login..."
-      render "welcome/home"
-    end
+  # def fbauth
+  #   user = User.from_facebook(auth)
+  #   if user
+  #     flash[:yay] = "Hey now, welcome #{user.name}!"
+  #     log_in(user)
+  #     redirect_to new_user_task_path(current_user)
+  #   else
+  #     flash[:snap] = "Looks like there was an issue with your login..."
+  #     render "welcome/home"
+  #   end
 
-  end
+  # end
   
 
   def destroy

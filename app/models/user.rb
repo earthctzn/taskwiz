@@ -12,14 +12,14 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
 
 
-  def self.from_facebook(auth)
-    @user = User.find_or_create_by(email: auth['info']['email']) do |u|
-      u.name = auth['info']['name']
-      u.email = auth['info']['email']
-      @upass = Sysrandom.hex(32)
-      u.password = @upass
-      u.password_confirmation = @upass
-    end
-  end
+  # def self.from_facebook(auth)
+  #   @user = User.find_or_create_by(email: auth['info']['email']) do |u|
+  #     u.name = auth['info']['name']
+  #     u.email = auth['info']['email']
+  #     @upass = Sysrandom.hex(32)
+  #     u.password = @upass
+  #     u.password_confirmation = @upass
+  #   end
+  # end
   
 end
