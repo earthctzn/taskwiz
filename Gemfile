@@ -5,7 +5,7 @@ ruby '>= 2.7.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.2.2'
+gem 'rails'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
@@ -34,6 +34,8 @@ gem 'omniauth-rails_csrf_protection', '~> 0.1'
 gem 'sysrandom', '~> 1.0', '>= 1.0.5'
 gem "bootstrap", ">= 4.3.1"
 gem 'jquery-rails'
+gem "rack", ">= 2.2.3"
+gem "websocket-extensions", ">= 0.1.5"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
